@@ -26,16 +26,8 @@ library(dplyr)
 
 ## Analyse
 
-<<<<<<< HEAD
 Vi starter ved å sortere utvalget i datasettet inn i 8 intervallet med sammendragsstatistikk, for å gi en oversikt:
 
-```{r Datautvalg sortert, echo=FALSE}
-heights$heightInt <- cut(heights$height, breaks = 8)
-kable(summary(heights[,1:4]))
-kable(summary(heights[,5:9]))
-```
-
-Her ser vi statistikk på inntekt, høyde, vekt, alder, eksteskapelig status, kjønn, utdanning. 
 =======
 ```{r}
 heights$height_cm <- heights$height*2.54
@@ -44,7 +36,7 @@ kable(summary(heights[,1:5]))
 kable(summary(heights[,6:10]))
 ```
 
->>>>>>> 4744c12e7b97a5dfdf066274f4296a2e8b11c245
+Her ser vi statistikk på inntekt, høyde, vekt, alder, eksteskapelig status, kjønn, utdanning. 
 
 ## Referanser
 
