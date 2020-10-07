@@ -19,7 +19,7 @@ library(dplyr)
 
 ## Analyse
 
-Vi starter ved å vise utvalget i datasettet for å gi en oversikt:
+Vi starter ved å vise utvalget i datasettet i 8 intervallet av sammendragsstatistikk, for å gi en oversikt:
 
 ```{r Datautvalg sortert, echo=FALSE}
 heights$heightInt <- cut(heights$height, breaks = 8)
