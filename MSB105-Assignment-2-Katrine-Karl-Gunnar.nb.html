@@ -1763,13 +1763,178 @@ summary {
 </div>
 <div id="analyse" class="section level2">
 <h2>Analyse</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVpZ2h0cyRoZWlnaHRfY20gPC0gaGVpZ2h0cyRoZWlnaHQqMi41NFxuaGVpZ2h0cyRoZWlnaHRJbnQgPC0gY3V0KGhlaWdodHMkaGVpZ2h0X2NtLCBicmVha3MgPSA4KVxua2FibGUoc3VtbWFyeShoZWlnaHRzWywxOjVdKSlcbmBgYCJ9 -->
+<pre class="r"><code>heights$height_cm &lt;- heights$height*2.54
+heights$heightInt &lt;- cut(heights$height_cm, breaks = 8)
+kable(summary(heights[,1:5]))</code></pre>
+<!-- rnb-source-end -->
+<p>
+<!-- rnb-html-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImtuaXRfYXNpcyJdLCJzaXppbmdQb2xpY3kiOltdfX0= -->
+
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">income</th>
+<th align="left">height</th>
+<th align="left">weight</th>
+<th align="left">age</th>
+<th align="left">marital</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Min. : 0.0</td>
+<td align="left">Min. :52.0</td>
+<td align="left">Min. : 76.0</td>
+<td align="left">Min. :47.00</td>
+<td align="left">single :1124</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">1st Qu.: 165.5</td>
+<td align="left">1st Qu.:64.0</td>
+<td align="left">1st Qu.:157.0</td>
+<td align="left">1st Qu.:49.00</td>
+<td align="left">married :3806</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Median : 29589.5</td>
+<td align="left">Median :67.0</td>
+<td align="left">Median :184.0</td>
+<td align="left">Median :51.00</td>
+<td align="left">separated: 366</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Mean : 41203.9</td>
+<td align="left">Mean :67.1</td>
+<td align="left">Mean :188.3</td>
+<td align="left">Mean :51.33</td>
+<td align="left">divorced :1549</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">3rd Qu.: 55000.0</td>
+<td align="left">3rd Qu.:70.0</td>
+<td align="left">3rd Qu.:212.0</td>
+<td align="left">3rd Qu.:53.00</td>
+<td align="left">widowed : 161</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Max. :343830.0</td>
+<td align="left">Max. :84.0</td>
+<td align="left">Max. :524.0</td>
+<td align="left">Max. :56.00</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA’s :95</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- rnb-html-end -->
+ <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxua2FibGUoc3VtbWFyeShoZWlnaHRzWyw2OjEwXSkpXG5gYGAifQ== --></p>
+<pre class="r"><code>kable(summary(heights[,6:10]))</code></pre>
+<!-- rnb-source-end -->
+
+<!-- rnb-html-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImtuaXRfYXNpcyJdLCJzaXppbmdQb2xpY3kiOltdfX0= -->
+
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">sex</th>
+<th align="left">education</th>
+<th align="left">afqt</th>
+<th align="left">height_cm</th>
+<th align="left">heightInt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">male :3402</td>
+<td align="left">Min. : 1.00</td>
+<td align="left">Min. : 0.00</td>
+<td align="left">Min. :132.1</td>
+<td align="left">(163,173]:2298</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">female:3604</td>
+<td align="left">1st Qu.:12.00</td>
+<td align="left">1st Qu.: 15.12</td>
+<td align="left">1st Qu.:162.6</td>
+<td align="left">(173,183]:1957</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">NA</td>
+<td align="left">Median :12.00</td>
+<td align="left">Median : 36.76</td>
+<td align="left">Median :170.2</td>
+<td align="left">(152,163]:1778</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">NA</td>
+<td align="left">Mean :13.22</td>
+<td align="left">Mean : 41.21</td>
+<td align="left">Mean :170.4</td>
+<td align="left">(183,193]: 628</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">NA</td>
+<td align="left">3rd Qu.:15.00</td>
+<td align="left">3rd Qu.: 65.24</td>
+<td align="left">3rd Qu.:177.8</td>
+<td align="left">(142,152]: 285</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">NA</td>
+<td align="left">Max. :20.00</td>
+<td align="left">Max. :100.00</td>
+<td align="left">Max. :213.4</td>
+<td align="left">(193,203]: 48</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">NA</td>
+<td align="left">NA’s :10</td>
+<td align="left">NA’s :262</td>
+<td align="left">NA</td>
+<td align="left">(Other) : 12</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- rnb-html-end -->
+
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
 <div id="referanser" class="section level2">
 <h2>Referanser</h2>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkhhciBlbiBwZXJzb25zIGjDuHlkZSBpbm52aXJrbmluZyBww6UgbMO4bm5hPyINCnN1YnRpdGxlOiAiQXNzaWdubWVudCAyIGkgTVNCMTA1IERhdGEgU2NpZW5jZSAtIGlubmxldmVyaW5nc2ZyaXN0IDEyLjEwLjIwIg0KYXV0aG9yOiANCiAgLSBLYXRyaW5lIEhvcGUNCiAgLSBLYXJsLUd1bm5hciBTZXZlcmluc2VuDQpjbGFzc29wdGlvbjogdHdvc2lkZQ0KZm9udHNpemU6IDEycHQNCmxpbmVzdHJldGNoOiAxLjUNCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCg0KYGBge3Igc2V0dXAsIGVjaG8gPSBGQUxTRX0NCmxpYnJhcnkobW9kZWxyKQ0KbGlicmFyeShnZ3Bsb3QyKQ0KbGlicmFyeShrbml0cikNCmxpYnJhcnkodGlueXRleCkNCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShnZ3B1YnIpDQpsaWJyYXJ5KGRwbHlyKQ0KYGBgDQoNCiMjIEludHJvZHVrc2pvbg0KDQoNCiMjIEFuYWx5c2UNCg0KDQojIyBSZWZlcmFuc2VyDQoNCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkhhciBlbiBwZXJzb25zIGjDuHlkZSBpbm52aXJrbmluZyBww6UgbMO4bm5hPyINCnN1YnRpdGxlOiAiQXNzaWdubWVudCAyIGkgTVNCMTA1IERhdGEgU2NpZW5jZSAtIGlubmxldmVyaW5nc2ZyaXN0IDEyLjEwLjIwIg0KYXV0aG9yOiANCiAgLSBLYXRyaW5lIEhvcGUNCiAgLSBLYXJsLUd1bm5hciBTZXZlcmluc2VuDQpjbGFzc29wdGlvbjogdHdvc2lkZQ0KZm9udHNpemU6IDEycHQNCmxpbmVzdHJldGNoOiAxLjUNCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCg0KYGBge3Igc2V0dXAsIGVjaG8gPSBGQUxTRX0NCmxpYnJhcnkobW9kZWxyKQ0KbGlicmFyeShnZ3Bsb3QyKQ0KbGlicmFyeShrbml0cikNCmxpYnJhcnkodGlueXRleCkNCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShnZ3B1YnIpDQpsaWJyYXJ5KGRwbHlyKQ0KYGBgDQoNCiMjIEludHJvZHVrc2pvbg0KDQoNCiMjIEFuYWx5c2UNCg0KYGBge3J9DQpoZWlnaHRzJGhlaWdodF9jbSA8LSBoZWlnaHRzJGhlaWdodCoyLjU0DQpoZWlnaHRzJGhlaWdodEludCA8LSBjdXQoaGVpZ2h0cyRoZWlnaHRfY20sIGJyZWFrcyA9IDgpDQprYWJsZShzdW1tYXJ5KGhlaWdodHNbLDE6NV0pKQ0Ka2FibGUoc3VtbWFyeShoZWlnaHRzWyw2OjEwXSkpDQpgYGANCg0KDQojIyBSZWZlcmFuc2VyDQoNCg0K</div>
 
 
 

@@ -26,6 +26,13 @@ library(dplyr)
 
 ## Analyse
 
+```{r}
+heights$height_cm <- heights$height*2.54
+heights$heightInt <- cut(heights$height_cm, breaks = 8)
+kable(summary(heights[,1:5]))
+kable(summary(heights[,6:10]))
+```
+
 
 ## Referanser
 
