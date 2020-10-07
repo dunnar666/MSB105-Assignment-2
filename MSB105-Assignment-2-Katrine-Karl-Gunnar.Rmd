@@ -19,7 +19,7 @@ library(dplyr)
 
 ## Analyse
 
-Vi starter ved å vise utvalget i datasettet i 8 intervallet av sammendragsstatistikk, for å gi en oversikt:
+Vi starter ved å sortere utvalget i datasettet inn i 8 intervallet med sammendragsstatistikk, for å gi en oversikt:
 
 ```{r Datautvalg sortert, echo=FALSE}
 heights$heightInt <- cut(heights$height, breaks = 8)
@@ -27,7 +27,7 @@ kable(summary(heights[,1:4]))
 kable(summary(heights[,5:9]))
 ```
 
-Her ser vi 
+Her ser vi statistikk på inntekt, høyde, vekt, alder, eksteskapelig status, kjønn, utdanning. 
 
 ## Referanser
 
