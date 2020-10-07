@@ -4,7 +4,22 @@ output: html_notebook
 ---
 
 
-```{r setup, echo=FALSE}
-
+```{r setup, echo = FALSE}
+library(modelr)
+library(ggplot2)
+library(knitr)
+library(tinytex)
+library(tidyverse)
+library(ggpubr)
+library(dplyr)
 ```
+
+## Introduksjon
+
+
+## Analyse
+
+
+## Referanser
+
 
