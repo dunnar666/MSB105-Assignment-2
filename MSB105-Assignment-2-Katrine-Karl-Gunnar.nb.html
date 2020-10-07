@@ -1751,6 +1751,24 @@ summary {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-output-begin eyJkYXRhIjoiVXNlIHN1cHByZXNzUGFja2FnZVN0YXJ0dXBNZXNzYWdlcygpIHRvIGVsaW1pbmF0ZSBwYWNrYWdlIHN0YXJ0dXAgbWVzc2FnZXNcblJlZ2lzdGVyZWQgUzMgbWV0aG9kcyBvdmVyd3JpdHRlbiBieSAnZGJwbHlyJzpcbiAgbWV0aG9kICAgICAgICAgZnJvbVxuICBwcmludC50YmxfbGF6eSAgICAgXG4gIHByaW50LnRibF9zcWwgICAgICBcbuKUgOKUgCBBdHRhY2hpbmcgcGFja2FnZXMg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAIHRpZHl2ZXJzZSAxLjMuMCDilIDilIBcbuKckyB0aWJibGUgIDMuMC4zICAgICDinJMgZHBseXIgICAxLjAuMlxu4pyTIHRpZHlyICAgMS4xLjEgICAgIOKckyBzdHJpbmdyIDEuNC4wXG7inJMgcmVhZHIgICAxLjMuMSAgICAg4pyTIGZvcmNhdHMgMC41LjBcbuKckyBwdXJyciAgIDAuMy40ICAgICBcbuKUgOKUgCBDb25mbGljdHMg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAIHRpZHl2ZXJzZV9jb25mbGljdHMoKSDilIDilIBcbnggZHBseXI6OmZpbHRlcigpIG1hc2tzIHN0YXRzOjpmaWx0ZXIoKVxueCBkcGx5cjo6bGFnKCkgICAgbWFza3Mgc3RhdHM6OmxhZygpXG5SZWdpc3RlcmVkIFMzIG1ldGhvZCBvdmVyd3JpdHRlbiBieSAnZGF0YS50YWJsZSc6XG4gIG1ldGhvZCAgICAgICAgICAgZnJvbVxuICBwcmludC5kYXRhLnRhYmxlICAgICBcbiJ9 -->
+<pre><code>Use suppressPackageStartupMessages() to eliminate package startup messages
+Registered S3 methods overwritten by &#39;dbplyr&#39;:
+  method         from
+  print.tbl_lazy     
+  print.tbl_sql      
+── Attaching packages ────────────────────────────────────────────────────── tidyverse 1.3.0 ──
+✓ tibble  3.0.3     ✓ dplyr   1.0.2
+✓ tidyr   1.1.1     ✓ stringr 1.4.0
+✓ readr   1.3.1     ✓ forcats 0.5.0
+✓ purrr   0.3.4     
+── Conflicts ───────────────────────────────────────────────────────── tidyverse_conflicts() ──
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+Registered S3 method overwritten by &#39;data.table&#39;:
+  method           from
+  print.data.table     </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <div id="introduksjon" class="section level2">
@@ -1758,13 +1776,163 @@ summary {
 </div>
 <div id="analyse" class="section level2">
 <h2>Analyse</h2>
+<p>Vi starter ved å vise utvalget i datasettet for å gi en oversikt:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<p>
+<!-- rnb-html-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImtuaXRfYXNpcyJdLCJzaXppbmdQb2xpY3kiOltdfX0= -->
+
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">income</th>
+<th align="left">height</th>
+<th align="left">weight</th>
+<th align="left">age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Min. : 0.0</td>
+<td align="left">Min. :52.0</td>
+<td align="left">Min. : 76.0</td>
+<td align="left">Min. :47.00</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">1st Qu.: 165.5</td>
+<td align="left">1st Qu.:64.0</td>
+<td align="left">1st Qu.:157.0</td>
+<td align="left">1st Qu.:49.00</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Median : 29589.5</td>
+<td align="left">Median :67.0</td>
+<td align="left">Median :184.0</td>
+<td align="left">Median :51.00</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Mean : 41203.9</td>
+<td align="left">Mean :67.1</td>
+<td align="left">Mean :188.3</td>
+<td align="left">Mean :51.33</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">3rd Qu.: 55000.0</td>
+<td align="left">3rd Qu.:70.0</td>
+<td align="left">3rd Qu.:212.0</td>
+<td align="left">3rd Qu.:53.00</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Max. :343830.0</td>
+<td align="left">Max. :84.0</td>
+<td align="left">Max. :524.0</td>
+<td align="left">Max. :56.00</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA’s :95</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- rnb-html-end -->
+
+<!-- rnb-html-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImtuaXRfYXNpcyJdLCJzaXppbmdQb2xpY3kiOltdfX0= -->
+
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">marital</th>
+<th align="left">sex</th>
+<th align="left">education</th>
+<th align="left">afqt</th>
+<th align="left">heightInt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">single :1124</td>
+<td align="left">male :3402</td>
+<td align="left">Min. : 1.00</td>
+<td align="left">Min. : 0.00</td>
+<td align="left">(64,68]:2298</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">married :3806</td>
+<td align="left">female:3604</td>
+<td align="left">1st Qu.:12.00</td>
+<td align="left">1st Qu.: 15.12</td>
+<td align="left">(68,72]:1957</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">separated: 366</td>
+<td align="left">NA</td>
+<td align="left">Median :12.00</td>
+<td align="left">Median : 36.76</td>
+<td align="left">(60,64]:1778</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">divorced :1549</td>
+<td align="left">NA</td>
+<td align="left">Mean :13.22</td>
+<td align="left">Mean : 41.21</td>
+<td align="left">(72,76]: 628</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">widowed : 161</td>
+<td align="left">NA</td>
+<td align="left">3rd Qu.:15.00</td>
+<td align="left">3rd Qu.: 65.24</td>
+<td align="left">(56,60]: 285</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Max. :20.00</td>
+<td align="left">Max. :100.00</td>
+<td align="left">(76,80]: 48</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA’s :10</td>
+<td align="left">NA’s :262</td>
+<td align="left">(Other): 12</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- rnb-html-end -->
+</p>
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
 <div id="referanser" class="section level2">
 <h2>Referanser</h2>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQoNCmBgYHtyIHNldHVwLCBlY2hvID0gRkFMU0V9DQpsaWJyYXJ5KG1vZGVscikNCmxpYnJhcnkoZ2dwbG90MikNCmxpYnJhcnkoa25pdHIpDQpsaWJyYXJ5KHRpbnl0ZXgpDQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkoZ2dwdWJyKQ0KbGlicmFyeShkcGx5cikNCmBgYA0KDQojIyBJbnRyb2R1a3Nqb24NCg0KDQojIyBBbmFseXNlDQoNCg0KIyMgUmVmZXJhbnNlcg0KDQoNCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKCmBgYHtyIHNldHVwLCBlY2hvID0gRkFMU0V9CmxpYnJhcnkobW9kZWxyKQpsaWJyYXJ5KGdncGxvdDIpCmxpYnJhcnkoa25pdHIpCmxpYnJhcnkodGlueXRleCkKbGlicmFyeSh0aWR5dmVyc2UpCmxpYnJhcnkoZ2dwdWJyKQpsaWJyYXJ5KGRwbHlyKQpgYGAKCiMjIEludHJvZHVrc2pvbgoKCiMjIEFuYWx5c2UKClZpIHN0YXJ0ZXIgdmVkIMOlIHZpc2UgdXR2YWxnZXQgaSBkYXRhc2V0dGV0IGZvciDDpSBnaSBlbiBvdmVyc2lrdDoKCmBgYHtyIERhdGF1dHZhbGcgc29ydGVydCwgZWNobz1GQUxTRX0KaGVpZ2h0cyRoZWlnaHRJbnQgPC0gY3V0KGhlaWdodHMkaGVpZ2h0LCBicmVha3MgPSA4KQprYWJsZShzdW1tYXJ5KGhlaWdodHNbLDE6NF0pKQprYWJsZShzdW1tYXJ5KGhlaWdodHNbLDU6OV0pKQpgYGAKCiAKIyMgUmVmZXJhbnNlcgoKCg==</div>
 
 
 
