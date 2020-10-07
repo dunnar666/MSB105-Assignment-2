@@ -1756,26 +1756,6 @@ summary {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<<<<<<< HEAD
-<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2RzIG92ZXJ3cml0dGVuIGJ5ICdkYnBseXInOlxuICBtZXRob2QgICAgICAgICBmcm9tXG4gIHByaW50LnRibF9sYXp5ICAgICBcbiAgcHJpbnQudGJsX3NxbCAgICAgIFxu4pSA4pSAIEF0dGFjaGluZyBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDEuMy4wIOKUgOKUgFxu4pyTIHRpYmJsZSAgMy4wLjMgICAgIOKckyBkcGx5ciAgIDEuMC4yXG7inJMgdGlkeXIgICAxLjEuMSAgICAg4pyTIHN0cmluZ3IgMS40LjBcbuKckyByZWFkciAgIDEuMy4xICAgICDinJMgZm9yY2F0cyAwLjUuMFxu4pyTIHB1cnJyICAgMC4zLjQgICAgIFxu4pSA4pSAIENvbmZsaWN0cyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlX2NvbmZsaWN0cygpIOKUgOKUgFxueCBkcGx5cjo6ZmlsdGVyKCkgbWFza3Mgc3RhdHM6OmZpbHRlcigpXG54IGRwbHlyOjpsYWcoKSAgICBtYXNrcyBzdGF0czo6bGFnKClcblJlZ2lzdGVyZWQgUzMgbWV0aG9kIG92ZXJ3cml0dGVuIGJ5ICdkYXRhLnRhYmxlJzpcbiAgbWV0aG9kICAgICAgICAgICBmcm9tXG4gIHByaW50LmRhdGEudGFibGUgICAgIFxuIn0= -->
-<pre><code>Registered S3 methods overwritten by &#39;dbplyr&#39;:
-  method         from
-  print.tbl_lazy     
-  print.tbl_sql      
-── Attaching packages ────────────────────────────────────────────────────── tidyverse 1.3.0 ──
-✓ tibble  3.0.3     ✓ dplyr   1.0.2
-✓ tidyr   1.1.1     ✓ stringr 1.4.0
-✓ readr   1.3.1     ✓ forcats 0.5.0
-✓ purrr   0.3.4     
-── Conflicts ───────────────────────────────────────────────────────── tidyverse_conflicts() ──
-x dplyr::filter() masks stats::filter()
-x dplyr::lag()    masks stats::lag()
-Registered S3 method overwritten by &#39;data.table&#39;:
-  method           from
-  print.data.table     </code></pre>
-<!-- rnb-output-end -->
-=======
->>>>>>> 4de0a416c27afb6110d6ea0104d7fcb807bfba04
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <div id="introduksjon" class="section level2">
@@ -1786,177 +1766,16 @@ Registered S3 method overwritten by &#39;data.table&#39;:
 <p>Vi starter med å lage en kolonne der høyden er vist i centimeter. Vi gjør dette for å kunne få en bedre og mer forståelig analyse, da vi vil få en bedre forståelse ved å benytte kjente verdier. Deretter sorterer vi utvalget i datasettet inn i 10 intervaller med sammendragsstatistikk, for å gi en kjapp oversikt:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<p>
-<!-- rnb-html-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImtuaXRfYXNpcyJdLCJzaXppbmdQb2xpY3kiOltdfX0= -->
-
-<table>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="left">income</th>
-<th align="left">height</th>
-<th align="left">weight</th>
-<th align="left">age</th>
-<th align="left">marital</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">Min. : 0.0</td>
-<td align="left">Min. :52.0</td>
-<td align="left">Min. : 76.0</td>
-<td align="left">Min. :47.00</td>
-<td align="left">single :1124</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">1st Qu.: 165.5</td>
-<td align="left">1st Qu.:64.0</td>
-<td align="left">1st Qu.:157.0</td>
-<td align="left">1st Qu.:49.00</td>
-<td align="left">married :3806</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">Median : 29589.5</td>
-<td align="left">Median :67.0</td>
-<td align="left">Median :184.0</td>
-<td align="left">Median :51.00</td>
-<td align="left">separated: 366</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">Mean : 41203.9</td>
-<td align="left">Mean :67.1</td>
-<td align="left">Mean :188.3</td>
-<td align="left">Mean :51.33</td>
-<td align="left">divorced :1549</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">3rd Qu.: 55000.0</td>
-<td align="left">3rd Qu.:70.0</td>
-<td align="left">3rd Qu.:212.0</td>
-<td align="left">3rd Qu.:53.00</td>
-<td align="left">widowed : 161</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">Max. :343830.0</td>
-<td align="left">Max. :84.0</td>
-<td align="left">Max. :524.0</td>
-<td align="left">Max. :56.00</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA’s :95</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-</tbody>
-</table>
-
-
-<!-- rnb-html-end -->
-
-<!-- rnb-html-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImtuaXRfYXNpcyJdLCJzaXppbmdQb2xpY3kiOltdfX0= -->
-
-<table>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="left">sex</th>
-<th align="left">education</th>
-<th align="left">afqt</th>
-<th align="left">height_cm</th>
-<th align="left">height_cmInt</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">male :3402</td>
-<td align="left">Min. : 1.00</td>
-<td align="left">Min. : 0.00</td>
-<td align="left">Min. :132.1</td>
-<td align="left">(163,173]:2298</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">female:3604</td>
-<td align="left">1st Qu.:12.00</td>
-<td align="left">1st Qu.: 15.12</td>
-<td align="left">1st Qu.:162.6</td>
-<td align="left">(173,183]:1957</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">NA</td>
-<td align="left">Median :12.00</td>
-<td align="left">Median : 36.76</td>
-<td align="left">Median :170.2</td>
-<td align="left">(152,163]:1778</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">NA</td>
-<td align="left">Mean :13.22</td>
-<td align="left">Mean : 41.21</td>
-<td align="left">Mean :170.4</td>
-<td align="left">(183,193]: 628</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">NA</td>
-<td align="left">3rd Qu.:15.00</td>
-<td align="left">3rd Qu.: 65.24</td>
-<td align="left">3rd Qu.:177.8</td>
-<td align="left">(142,152]: 285</td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">NA</td>
-<td align="left">Max. :20.00</td>
-<td align="left">Max. :100.00</td>
-<td align="left">Max. :213.4</td>
-<td align="left">(193,203]: 48</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">NA</td>
-<td align="left">NA’s :10</td>
-<td align="left">NA’s :262</td>
-<td align="left">NA</td>
-<td align="left">(Other) : 12</td>
-</tr>
-</tbody>
-</table>
-
-
-<!-- rnb-html-end -->
-</p>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<<<<<<< HEAD
-<p>Her ser vi statistikk på inntekt, høyde, vekt, alder, ekteskapelig status, kjønn, utdanning.</p>
-=======
 <p>Her ser vi statistikk på inntekt, høyde (i tommer), vekt, alder, sivilstatus, kjønn og utdanning og høyde (i cm).</p>
->>>>>>> 4de0a416c27afb6110d6ea0104d7fcb807bfba04
 </div>
 <div id="referanser" class="section level2">
 <h2>Referanser</h2>
 <!-- rnb-text-end -->
 </div>
 
-<<<<<<< HEAD
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSGFyIGVuIHBlcnNvbnMgaMO4eWRlIGlubnZpcmtuaW5nIHDDpSBsw7hubmE/IgpzdWJ0aXRsZTogIkFzc2lnbm1lbnQgMiBpIE1TQjEwNSBEYXRhIFNjaWVuY2UgLSBpbm5sZXZlcmluZ3NmcmlzdCAxMi4xMC4yMCIKYXV0aG9yOiAKICAtIEthdHJpbmUgSG9wZQogIC0gS2FybC1HdW5uYXIgU2V2ZXJpbnNlbgpjbGFzc29wdGlvbjogdHdvc2lkZQpmb250c2l6ZTogMTJwdApsaW5lc3RyZXRjaDogMS41Cm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCgpgYGB7ciBzZXR1cCwgZWNobyA9IEZBTFNFfQpsaWJyYXJ5KG1vZGVscikKbGlicmFyeShnZ3Bsb3QyKQpsaWJyYXJ5KGtuaXRyKQpsaWJyYXJ5KHRpbnl0ZXgpCmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGdncHVicikKbGlicmFyeShkcGx5cikKYGBgCgojIyBJbnRyb2R1a3Nqb24KCgojIyBBbmFseXNlCgpWaSBzdGFydGVyIHZlZCDDpSBzb3J0ZXJlIHV0dmFsZ2V0IGkgZGF0YXNldHRldCBpbm4gaSA4IGludGVydmFsbGV0IG1lZCBzYW1tZW5kcmFnc3N0YXRpc3Rpa2ssIGZvciDDpSBnaSBlbiBvdmVyc2lrdDoKCj09PT09PT0KYGBge3J9CmhlaWdodHMkaGVpZ2h0X2NtIDwtIGhlaWdodHMkaGVpZ2h0KjIuNTQKaGVpZ2h0cyRoZWlnaHRJbnQgPC0gY3V0KGhlaWdodHMkaGVpZ2h0X2NtLCBicmVha3MgPSA4KQprYWJsZShzdW1tYXJ5KGhlaWdodHNbLDE6NV0pKQprYWJsZShzdW1tYXJ5KGhlaWdodHNbLDY6MTBdKSkKYGBgCgpIZXIgc2VyIHZpIHN0YXRpc3Rpa2sgcMOlIGlubnRla3QsIGjDuHlkZSwgdmVrdCwgYWxkZXIsIGVrdGVza2FwZWxpZyBzdGF0dXMsIGtqw7hubiwgdXRkYW5uaW5nLiAKCiMjIFJlZmVyYW5zZXIKCgo=</div>
-=======
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkhhciBlbiBwZXJzb25zIGjDuHlkZSBpbm52aXJrbmluZyBww6UgbMO4bm5hPyINCnN1YnRpdGxlOiAiQXNzaWdubWVudCAyIGkgTVNCMTA1IERhdGEgU2NpZW5jZSAtIGlubmxldmVyaW5nc2ZyaXN0IDEyLjEwLjIwIg0KYXV0aG9yOiANCiAgLSBLYXRyaW5lIEhvcGUNCiAgLSBLYXJsLUd1bm5hciBTZXZlcmluc2VuDQpjbGFzc29wdGlvbjogdHdvc2lkZQ0KZm9udHNpemU6IDEycHQNCmxpbmVzdHJldGNoOiAxLjUNCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCg0KYGBge3Igc2V0dXAsIGVjaG8gPSBGQUxTRX0NCmxpYnJhcnkobW9kZWxyKQ0KbGlicmFyeShnZ3Bsb3QyKQ0KbGlicmFyeShrbml0cikNCmxpYnJhcnkodGlueXRleCkNCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShnZ3B1YnIpDQpsaWJyYXJ5KGRwbHlyKQ0KYGBgDQoNCiMjIEludHJvZHVrc2pvbg0KDQoNCiMjIEFuYWx5c2UNCg0KVmkgc3RhcnRlciBtZWQgw6UgbGFnZSBlbiBrb2xvbm5lIGRlciBow7h5ZGVuIGVyIHZpc3QgaSBjZW50aW1ldGVyLiANClZpIGdqw7hyIGRldHRlIGZvciDDpSBrdW5uZSBmw6UgZW4gYmVkcmUgb2cgbWVyIGZvcnN0w6VlbGlnIGFuYWx5c2UsIGRhIHZpIHZpbCBmw6UgZW4gYmVkcmUgZm9yc3TDpWVsc2UgdmVkIMOlIGJlbnl0dGUga2plbnRlIHZlcmRpZXIuIA0KRGVyZXR0ZXIgc29ydGVyZXIgdmkgdXR2YWxnZXQgaSBkYXRhc2V0dGV0IGlubiBpIDEwIGludGVydmFsbGVyIG1lZCBzYW1tZW5kcmFnc3N0YXRpc3Rpa2ssIGZvciDDpSBnaSBlbiBramFwcCBvdmVyc2lrdDoNCg0KYGBge3Igb3ZlcnNpa3QsIGVjaG89RkFMU0V9DQpoZWlnaHRzJGhlaWdodF9jbSA8LSBoZWlnaHRzJGhlaWdodCoyLjU0DQpoZWlnaHRzJGhlaWdodF9jbUludCA8LSBjdXQoaGVpZ2h0cyRoZWlnaHRfY20sIGJyZWFrcyA9IDgpDQprYWJsZShzdW1tYXJ5KGhlaWdodHNbLDE6NV0pKQ0Ka2FibGUoc3VtbWFyeShoZWlnaHRzWyw2OjEwXSkpDQpgYGANCg0KSGVyIHNlciB2aSBzdGF0aXN0aWtrIHDDpSBpbm50ZWt0LCBow7h5ZGUgKGkgdG9tbWVyKSwgdmVrdCwgYWxkZXIsIHNpdmlsc3RhdHVzLCBrasO4bm4gb2cgdXRkYW5uaW5nIG9nIGjDuHlkZSAoaSBjbSkuDQoNCg0KIyMgUmVmZXJhbnNlcg0KDQoNCg==</div>
->>>>>>> 4de0a416c27afb6110d6ea0104d7fcb807bfba04
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiSGFyIGVuIHBlcnNvbnMgaMO4eWRlIGlubnZpcmtuaW5nIHDDpSBsw7hubmE/IgpzdWJ0aXRsZTogIkFzc2lnbm1lbnQgMiBpIE1TQjEwNSBEYXRhIFNjaWVuY2UgLSBpbm5sZXZlcmluZ3NmcmlzdCAxMi4xMC4yMCIKYXV0aG9yOiAKICAtIEthdHJpbmUgSG9wZQogIC0gS2FybC1HdW5uYXIgU2V2ZXJpbnNlbgpjbGFzc29wdGlvbjogdHdvc2lkZQpmb250c2l6ZTogMTJwdApsaW5lc3RyZXRjaDogMS41Cm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCgpgYGB7ciBzZXR1cCwgZWNobyA9IEZBTFNFfQpsaWJyYXJ5KG1vZGVscikKbGlicmFyeShnZ3Bsb3QyKQpsaWJyYXJ5KGtuaXRyKQpsaWJyYXJ5KHRpbnl0ZXgpCmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGdncHVicikKbGlicmFyeShkcGx5cikKYGBgCgojIyBJbnRyb2R1a3Nqb24KCgojIyBBbmFseXNlCgpWaSBzdGFydGVyIG1lZCDDpSBsYWdlIGVuIGtvbG9ubmUgZGVyIGjDuHlkZW4gZXIgdmlzdCBpIGNlbnRpbWV0ZXIuIApWaSBnasO4ciBkZXR0ZSBmb3Igw6Uga3VubmUgZsOlIGVuIGJlZHJlIG9nIG1lciBmb3JzdMOlZWxpZyBhbmFseXNlLCBkYSB2aSB2aWwgZsOlIGVuIGJlZHJlIGZvcnN0w6VlbHNlIHZlZCDDpSBiZW55dHRlIGtqZW50ZSB2ZXJkaWVyLiAKRGVyZXR0ZXIgc29ydGVyZXIgdmkgdXR2YWxnZXQgaSBkYXRhc2V0dGV0IGlubiBpIDEwIGludGVydmFsbGVyIG1lZCBzYW1tZW5kcmFnc3N0YXRpc3Rpa2ssIGZvciDDpSBnaSBlbiBramFwcCBvdmVyc2lrdDoKCmBgYHtyIG92ZXJzaWt0LCBlY2hvPUZBTFNFfQpoZWlnaHRzJGhlaWdodF9jbSA8LSBoZWlnaHRzJGhlaWdodCoyLjU0CmhlaWdodHMkaGVpZ2h0X2NtSW50IDwtIGN1dChoZWlnaHRzJGhlaWdodF9jbSwgYnJlYWtzID0gOCkKa2FibGUoc3VtbWFyeShoZWlnaHRzWywxOjVdKSkKa2FibGUoc3VtbWFyeShoZWlnaHRzWyw2OjEwXSkpCmBgYAoKSGVyIHNlciB2aSBzdGF0aXN0aWtrIHDDpSBpbm50ZWt0LCBow7h5ZGUgKGkgdG9tbWVyKSwgdmVrdCwgYWxkZXIsIHNpdmlsc3RhdHVzLCBrasO4bm4gb2cgdXRkYW5uaW5nIG9nIGjDuHlkZSAoaSBjbSkuCgojIyBSZWZlcmFuc2VyCgoK</div>
 
 
 

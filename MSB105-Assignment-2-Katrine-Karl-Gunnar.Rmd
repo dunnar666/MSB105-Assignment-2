@@ -37,12 +37,7 @@ kable(summary(heights[,1:5]))
 kable(summary(heights[,6:10]))
 ```
 
-<<<<<<< HEAD
-Her ser vi statistikk på inntekt, høyde, vekt, alder, ekteskapelig status, kjønn, utdanning. 
-=======
 Her ser vi statistikk på inntekt, høyde (i tommer), vekt, alder, sivilstatus, kjønn og utdanning og høyde (i cm).
-
->>>>>>> 4de0a416c27afb6110d6ea0104d7fcb807bfba04
 
 ## Referanser
 
