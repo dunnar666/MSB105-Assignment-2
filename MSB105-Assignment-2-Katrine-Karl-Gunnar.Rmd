@@ -19,7 +19,15 @@ library(dplyr)
 
 ## Analyse
 
+Vi starter ved å vise utvalget i datasettet for å gi en oversikt:
 
+```{r Datautvalg sortert, echo=FALSE}
+heights$heightInt <- cut(heights$height, breaks = 8)
+kable(summary(heights[,1:4]))
+kable(summary(heights[,5:9]))
+```
+
+ 
 ## Referanser
 
 
