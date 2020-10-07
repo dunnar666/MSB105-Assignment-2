@@ -36,7 +36,7 @@ kable(summary(heights[,1:5]))
 kable(summary(heights[,6:10]))
 ```
 
-Her ser vi statistikk på inntekt, høyde, vekt, alder, eksteskapelig status, kjønn, utdanning. 
+Her ser vi statistikk på inntekt, høyde, vekt, alder, ekteskapelig status, kjønn, utdanning. 
 
 ## Referanser
 
