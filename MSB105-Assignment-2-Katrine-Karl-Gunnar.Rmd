@@ -1,5 +1,12 @@
 ---
-title: "R Notebook"
+title: "Har en persons høyde innvirkning på lønna?"
+subtitle: "Assignment 2 i MSB105 Data Science - innleveringsfrist 12.10.20"
+author: 
+  - Katrine Hope
+  - Karl-Gunnar Severinsen
+classoption: twoside
+fontsize: 12pt
+linestretch: 1.5
 output: html_notebook
 ---
 
