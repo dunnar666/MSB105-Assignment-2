@@ -39,6 +39,40 @@ kable(summary(heights[,6:10]))
 
 Her ser vi statistikk på inntekt, høyde (i tommer), vekt, alder, sivilstatus, kjønn og utdanning og høyde (i cm).
 
+```{r}
+height_cm <- heights$height_cm
+hist(height_cm, breaks = 20,
+     main = "Høyde i centimeter",
+     xlab = "Centimeter",
+     ylab = "Frekvens",
+     col = "darkmagenta")
+```
+
+```{r}
+hist(height_cm, breaks = 20,
+     main = "Høyde i centimeter",
+     xlab = "Centimeter",
+     ylab = "Frekvens",
+     col = "darkmagenta")
+xfit <- seq(min(height_cm), max(height_cm))
+yfit <- dnorm(xfit,mean = mean(height_cm), sd = sd(height_cm))
+yfit <- yfit*diff(heights$height_cm[1:2])*length(height_cm)
+lines(xfit, yfit, col = "yellow", lwd = 4)
+```
+
+```{r}
+ggplot(data = heights) +
+  geom_density(aes(x = height_cm,
+                   main = "Høyde i centimeter",
+                   xlab = "Centimeter",
+                   ylab = "Frekvens"),
+                   fill = "darkmagenta")
+```
+
+
+
+
+
 ## Referanser
 
 
