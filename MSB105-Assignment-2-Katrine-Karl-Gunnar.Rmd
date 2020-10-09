@@ -41,7 +41,7 @@ kable(summary(heights[,3:7]))
 kable(summary(heights[,8:11]))
 ```
 
-Her ser vi statistikk på vekt (i lbs), alder, sivilstatus, kjønn og utdanning og høyde (i cm) og inntekt i NOK.
+Her ser vi statistikk på blant annet vekt (i lbs), alder, sivilstatus, kjønn og utdanning inntekt i NOK og høyde (i cm).
 
 ### 1-variabels analyser
 
