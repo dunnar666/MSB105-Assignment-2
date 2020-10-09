@@ -1,5 +1,5 @@
 ---
-title: "Har en persons høyde innvirkning på lønna?"
+title: "Har en persons høyde innvirkning på lønnen?"
 subtitle: "Assignment 2 i MSB105 Data Science - innleveringsfrist 12.10.20"
 author: 
   - Katrine Hope
@@ -45,6 +45,8 @@ Her ser vi statistikk på vekt (i lbs), alder, sivilstatus, kjønn og utdanning 
 
 ### Grafer
 
+Videre har vi laget noen histogrammer for å vise høyde (i centimeter) opp mot antall og tetthet. 
+
 ```{r histogran, echo=FALSE}
 height_cm <- heights$height_cm
 hist(height_cm, breaks = 20,
@@ -53,6 +55,9 @@ hist(height_cm, breaks = 20,
      ylab = "Frekvens",
      col = "darkmagenta")
 ```
+
+I histogrammet over ser vi høyde i centimeter opp mot frekvens. 
+Vi ser det er flest folk i kategorien 170 centimeter i høyde, etterfulgt av 175 cm, 165 cm, 180, 185 osv. 
 
 ```{r}
 hist(height_cm, breaks = 20,
@@ -72,13 +77,17 @@ ggplot(data = heights) +
                    fill = "darkmagenta")
 ```
 
+I ggplotet over ser vi tettheten opp mot høyde, og resultatet fra histogrammet gjenspeiles i ggplotet. 
+
+
 ```{r density inntekt, echo=FALSE}
 ggplot(data = heights) +
   geom_density(aes(x = inntekt),
                    fill = "darkmagenta")
 ```
-```
 
+I ggplottet over ser vi på tettheten opp mot inntekt og vi ser at det er flest folk som ikke har inntekt eller relativt mange med lav inntekt. 
+Basert på modellen er det nesten dobbelt som mange som ikke har inntekt eller relativt lav inntekt, opp mot "peaket" som er på ca. 350 000 - 400 000 som virker å stemme med beregnet gjennomsnittslønn på kr 370 835. 
 
 
 
