@@ -102,23 +102,35 @@ Vi har til nå sett på variablene *height_cm* og *inntekt* hver for seg.
 For å kunne vurdere om de har noe sammenheng, må vi putte dem inn i samme plot.
 
 ```{r plot-height-income}
-ggplot(heights, mapping = aes(x = height, y = inntekt, col = inntekt)) +
+heights_liminc <- heights %>%
+  filter(inntekt < 1000000)
+
+m1 <- ggplot(heights, mapping = aes(x = height_cm, y = inntekt, col = inntekt)) +
   geom_point()
+m2 <- ggplot(heights_liminc, mapping = aes(x = height_cm, y = inntekt, col = inntekt)) +
+  geom_point()
+ggarrange(m1,m2)
 ```
 Igjen ser vi at de øverste 2 prosentene ligger langt fra resten av observasjonene. 
 
 
-```{r boxplot-høyde-inntekt, echo=FALSE}
-heightsPosInc <- subset(heights, inntekt < 1000000)
-ggplot() +
-  scale_y_continuous(trans = scales::log_trans()) +
-  geom_boxplot(heights, 
+```{r boxplot, echo=FALSE}
+m3 <- ggplot(heights,
+                mapping = aes(
+                  x = height_cmInt,
+                  y = inntekt)) +
+        geom_boxplot(colour= "darkred",
+                     fill = "cornflowerblue") +
+  theme(panel.background = element_rect(fill = "pink"))
+m4 <- ggplot(heights_liminc, 
                mapping = aes(
                  x = height_cmInt, 
-                 y = inntekt), 
-               ymin = 50000, 
-               ymax = 700000,
-               colour = "darkgreen")
+                 y = inntekt)) +
+        geom_boxplot(colour = "darkred",
+                     fill = "darkolivegreen") +
+  theme(panel.background = element_rect(fill = "pink"))
+
+ggarrange(m3, m4)
 ```
 
 Vi ser igjen at alle observasjoner ligger utenfor beregnet standardavvik. 
@@ -142,6 +154,11 @@ summary(lm(inntekt ~ height_cm, data = heights))
 ```{r}
 summary(lm(inntekt ~ education + height_cm + sex + weight + afqt + marital, data = heights))
 ```
+
+```{r}
+hello()
+```
+
 
 
 ## Referanser
