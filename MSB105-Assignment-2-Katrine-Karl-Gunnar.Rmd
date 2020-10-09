@@ -110,9 +110,15 @@ Igjen ser vi at de øverste 2 prosentene ligger langt fra resten av observasjone
 
 ```{r boxplot-høyde-inntekt, echo=FALSE}
 heightsPosInc <- subset(heights, inntekt < 1000000)
-ggplot(heightsPosInc, mapping = aes(x = height_cmInt, y = inntekt)) +
+ggplot() +
   scale_y_continuous(trans = scales::log_trans()) +
-  geom_boxplot()
+  geom_boxplot(heights, 
+               mapping = aes(
+                 x = height_cmInt, 
+                 y = inntekt), 
+               ymin = 50000, 
+               ymax = 700000,
+               colour = "darkgreen")
 ```
 
 Vi ser igjen at alle observasjoner ligger utenfor beregnet standardavvik. 
@@ -124,6 +130,17 @@ ggplot(heightsPosInc, mapping = aes(x = height_cm, y = inntekt)) +
   scale_y_continuous(trans = scales::log_trans()) +
   geom_point(position = "jitter") +
   geom_smooth(method = 'lm')
+```
+
+
+### Regresjon
+
+```{r}
+summary(lm(inntekt ~ height_cm, data = heights))
+```
+
+```{r}
+summary(lm(inntekt ~ education + height_cm + sex + weight + afqt + marital, data = heights))
 ```
 
 
