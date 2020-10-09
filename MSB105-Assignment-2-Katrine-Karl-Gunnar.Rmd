@@ -108,7 +108,7 @@ ggplot(heights, mapping = aes(x = height, y = inntekt, col = inntekt)) +
 Igjen ser vi at de øverste 2 prosentene ligger langt fra resten av observasjonene. 
 
 
-```{r}
+```{r boxplot-høyde-inntekt, echo=FALSE}
 heightsPosInc <- subset(heights, inntekt < 1000000)
 ggplot(heightsPosInc, mapping = aes(x = height_cmInt, y = inntekt)) +
   scale_y_continuous(trans = scales::log_trans()) +
@@ -118,6 +118,13 @@ ggplot(heightsPosInc, mapping = aes(x = height_cmInt, y = inntekt)) +
 Vi ser igjen at alle observasjoner ligger utenfor beregnet standardavvik. 
 For å kunne jobbe videre med datasettet så bør disse ekskluderes, da de bidrar til å "forstyrre". 
 
+```{r geom_smooth, echo=False}
+heightsPosInc <- subset(heights, income > 0)
+ggplot(heightsPosInc, mapping = aes(x = height_cm, y = inntekt)) +
+  scale_y_continuous(trans = scales::log_trans()) +
+  geom_point(position = "jitter") +
+  geom_smooth(method = 'lm')
+```
 
 
 ## Referanser
