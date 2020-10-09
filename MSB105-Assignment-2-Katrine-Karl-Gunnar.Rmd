@@ -102,14 +102,14 @@ Vi har til nå sett på variablene *height_cm* og *inntekt* hver for seg.
 For å kunne vurdere om de har noe sammenheng, må vi putte dem inn i samme plot.
 
 ```{r plot-height-income}
-ggplot(heights, mapping = aes(x = height, y = income, col = income)) +
+ggplot(heights, mapping = aes(x = height, y = inntekt, col = inntekt)) +
   geom_point()
 ```
 Igjen ser vi at de øverste 2 prosentene ligger langt fra resten av observasjonene. 
 
 
 ```{r}
-heightsPosInc <- subset(heights, income > 0)
+heightsPosInc <- subset(heights, inntekt < 1000000)
 ggplot(heightsPosInc, mapping = aes(x = height_cmInt, y = inntekt)) +
   scale_y_continuous(trans = scales::log_trans()) +
   geom_boxplot()
@@ -117,6 +117,8 @@ ggplot(heightsPosInc, mapping = aes(x = height_cmInt, y = inntekt)) +
 
 Vi ser igjen at alle observasjoner ligger utenfor beregnet standardavvik. 
 For å kunne jobbe videre med datasettet så bør disse ekskluderes, da de bidrar til å "forstyrre". 
+
+
 
 ## Referanser
 
