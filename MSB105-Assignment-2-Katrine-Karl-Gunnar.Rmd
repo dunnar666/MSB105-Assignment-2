@@ -136,12 +136,16 @@ ggarrange(m3, m4)
 Vi ser igjen at alle observasjoner ligger utenfor beregnet standardavvik. 
 For å kunne jobbe videre med datasettet så bør disse ekskluderes, da de bidrar til å "forstyrre". 
 
-```{r geom_smooth, echo=False}
-heightsPosInc <- subset(heights, income > 0)
-ggplot(heightsPosInc, mapping = aes(x = height_cm, y = inntekt)) +
-  scale_y_continuous(trans = scales::log_trans()) +
+```{r heightsposinc-jitter-smooth, echo=False}
+m5 <- ggplot(heights, mapping = aes(x = height_cm, y = inntekt)) +
   geom_point(position = "jitter") +
   geom_smooth(method = 'lm')
+
+m6 <- ggplot(heights_liminc, mapping = aes(x = height_cm, y = inntekt)) +
+  geom_point(position = "jitter") +
+  geom_smooth(method = 'lm')
+
+ggarrange(m5, m6)
 ```
 
 
