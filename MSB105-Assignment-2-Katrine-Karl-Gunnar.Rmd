@@ -101,7 +101,12 @@ Vi så også dette tidligere i oversikten, der vi får en median på 266.000 og 
 Vi har til nå sett på variablene *height_cm* og *inntekt* hver for seg.
 For å kunne vurdere om de har noe sammenheng, må vi putte dem inn i samme plot.
 
-
+```{r plot-height-income}
+ggplot(heights, mapping = aes(x = height, y = income, col = income)) +
+  geom_point()
+```
+Igjen ser vi at de øverste 2 prosentene ligger langt fra resten av observasjonene. 
+For å kunne jobbe videre med datasettet så bør disse ekskluderes, da de bidrar til å "forstyrre". 
 
 
 ## Referanser
