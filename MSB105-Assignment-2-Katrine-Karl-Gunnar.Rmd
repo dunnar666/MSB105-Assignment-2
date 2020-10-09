@@ -106,8 +106,17 @@ ggplot(heights, mapping = aes(x = height, y = income, col = income)) +
   geom_point()
 ```
 Igjen ser vi at de øverste 2 prosentene ligger langt fra resten av observasjonene. 
-For å kunne jobbe videre med datasettet så bør disse ekskluderes, da de bidrar til å "forstyrre". 
 
+
+```{r}
+heightsPosInc <- subset(heights, income > 0)
+ggplot(heightsPosInc, mapping = aes(x = height_cmInt, y = inntekt)) +
+  scale_y_continuous(trans = scales::log_trans()) +
+  geom_boxplot()
+```
+
+Vi ser igjen at alle observasjoner ligger utenfor beregnet standardavvik. 
+For å kunne jobbe videre med datasettet så bør disse ekskluderes, da de bidrar til å "forstyrre". 
 
 ## Referanser
 
