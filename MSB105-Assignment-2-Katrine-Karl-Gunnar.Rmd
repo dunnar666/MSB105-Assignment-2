@@ -43,11 +43,12 @@ kable(summary(heights[,8:11]))
 
 Her ser vi statistikk på vekt (i lbs), alder, sivilstatus, kjønn og utdanning og høyde (i cm) og inntekt i NOK.
 
-### Grafer
+### 1-variabels analyser
 
-Videre har vi laget noen histogrammer for å vise høyde (i centimeter) opp mot antall og tetthet. 
+Videre har vi laget noen forskjellige overikter for variablene *height_cm* og *inntekt* for å kunne vurdere om variablene er normalfordelte eller ikke. 
+Vi starter med et histogram.
 
-```{r histogran, echo=FALSE}
+```{r histogram, echo=FALSE}
 height_cm <- heights$height_cm
 hist(height_cm, breaks = 20,
      main = "Høyde i centimeter",
@@ -57,7 +58,9 @@ hist(height_cm, breaks = 20,
 ```
 
 I histogrammet over ser vi høyde i centimeter opp mot frekvens. 
-Vi ser det er flest folk i kategorien 170 centimeter i høyde, etterfulgt av 175 cm, 165 cm, 180, 185 osv. 
+Histogrammet reflekterer *height_cmInt* fra oversikten i forrige kapittel.
+Vi kan også se at fordelingen er tilnærmet normalfordelt, med hovedvekten av observasjonene ligger mellom 160 til 180 centimeter.
+
 
 ```{r}
 hist(height_cm, breaks = 20,
@@ -77,8 +80,10 @@ ggplot(data = heights) +
                    fill = "darkmagenta")
 ```
 
-I ggplotet over ser vi tettheten opp mot høyde, og resultatet fra histogrammet gjenspeiles i ggplotet. 
+Over har vi et density plot, som i grunn viser det samme som histogrammet over, men ved hjelp av en jevn kurve som viser tettheten av observasjonene.
+Igjen ser vi at fordelingen er tilnærmet normalfordelt.
 
+Vi ønsker også å se på fordelingen i inntekt. 
 
 ```{r density inntekt, echo=FALSE}
 ggplot(data = heights) +
@@ -86,8 +91,16 @@ ggplot(data = heights) +
                    fill = "darkmagenta")
 ```
 
-I ggplottet over ser vi på tettheten opp mot inntekt og vi ser at det er flest folk som ikke har inntekt eller relativt mange med lav inntekt. 
-Basert på modellen er det nesten dobbelt som mange som ikke har inntekt eller relativt lav inntekt, opp mot "peaket" som er på ca. 350 000 - 400 000 som virker å stemme med beregnet gjennomsnittslønn på kr 370 835. 
+Her ser vi tydelig at inntekten ikke er normalfordelt.
+Dette har sammenheng med at det er mange observasjoner rundt 0, samt de 2% med høyest lønn er vist ved et gjennomsnitt av deres lønn.
+Dette medfører null observasjoner mellom 1.700.000 og 3.000.000, og en stor tetthet rundt 3-400.000.
+Vi så også dette tidligere i oversikten, der vi får en median på 266.000 og et gjennomsnitt på 370.000.
+
+### 2-variablers analyse
+
+Vi har til nå sett på variablene *height_cm* og *inntekt* hver for seg.
+For å kunne vurdere om de har noe sammenheng, må vi putte dem inn i samme plot.
+
 
 
 
