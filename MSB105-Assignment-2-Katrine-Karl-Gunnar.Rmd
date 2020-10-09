@@ -19,6 +19,7 @@ library(tinytex)
 library(tidyverse)
 library(ggpubr)
 library(dplyr)
+options(scipen = 999)
 ```
 
 ## Introduksjon
@@ -26,20 +27,25 @@ library(dplyr)
 
 ## Analyse
 
-Vi starter med å lage en kolonne der høyden er vist i centimeter. 
+### Oversikt
+
+Vi starter med å lage en kolonne der høyden er vist i centimeter og inntekten i nnorske kroner. 
 Vi gjør dette for å kunne få en bedre og mer forståelig analyse, da vi vil få en bedre forståelse ved å benytte kjente verdier. 
 Deretter sorterer vi utvalget i datasettet inn i 10 intervaller med sammendragsstatistikk, for å gi en kjapp oversikt:
 
 ```{r oversikt, echo=FALSE}
+heights$inntekt <- heights$income*9
 heights$height_cm <- heights$height*2.54
 heights$height_cmInt <- cut(heights$height_cm, breaks = 8)
-kable(summary(heights[,1:5]))
-kable(summary(heights[,6:10]))
+kable(summary(heights[,3:7]))
+kable(summary(heights[,8:11]))
 ```
 
-Her ser vi statistikk på inntekt, høyde (i tommer), vekt, alder, sivilstatus, kjønn og utdanning og høyde (i cm).
+Her ser vi statistikk på vekt (i lbs), alder, sivilstatus, kjønn og utdanning og høyde (i cm) og inntekt i NOK.
 
-```{r}
+### Grafer
+
+```{r histogran, echo=FALSE}
 height_cm <- heights$height_cm
 hist(height_cm, breaks = 20,
      main = "Høyde i centimeter",
@@ -60,15 +66,18 @@ yfit <- yfit*diff(heights$height_cm[1:2])*length(height_cm)
 lines(xfit, yfit, col = "yellow", lwd = 4)
 ```
 
-```{r}
+```{r density høyde, echo=FALSE}
 ggplot(data = heights) +
-  geom_density(aes(x = height_cm,
-                   main = "Høyde i centimeter",
-                   xlab = "Centimeter",
-                   ylab = "Frekvens"),
+  geom_density(aes(x = height_cm),
                    fill = "darkmagenta")
 ```
 
+```{r density inntekt, echo=FALSE}
+ggplot(data = heights) +
+  geom_density(aes(x = inntekt),
+                   fill = "darkmagenta")
+```
+```
 
 
 
