@@ -1,5 +1,5 @@
 ---
-title: "Har en persons høyde innvirkning på lønna?"
+title: "Har en persons høyde innvirkning på lønnen?"
 subtitle: "Assignment 2 i MSB105 Data Science - innleveringsfrist 12.10.20"
 author: 
   - Katrine Hope
