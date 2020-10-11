@@ -1,13 +1,15 @@
 ---
 title: "Har en persons høyde innvirkning på lønnen?"
-subtitle: "Assignment 2 i MSB105 Data Science - innleveringsfrist 12.10.20"
-author: 
-  - Katrine Hope
-  - Karl-Gunnar Severinsen
-classoption: twoside
+author:
+- Katrine Hope
+- Karl-Gunnar Severinsen
+subtitle: Assignment 2 i MSB105 Data Science - innleveringsfrist 12.10.20
+output:
+  html_notebook: default
+  pdf_document: default
 fontsize: 12pt
 linestretch: 1.5
-output: html_notebook
+classoption: twoside
 ---
 
 
@@ -46,7 +48,7 @@ Her ser vi statistikk på blant annet vekt (i lbs), alder, sivilstatus, kjønn o
 Under kjører vi samme oversikten, der vi ønsker se på hvordan den ser ut dersom vi begrenser inntekten til 1.600.000 NOK.
 Vi ønsker å gjøre dette får å utelukke de høye variablene som i følge *help-funksjonen* er beregnet gjennomsnittsinntekt av de 2 prosentene med høyest lønn.
 
-```{r}
+```{r summary_liminc, echo=F}
 heights_liminc <- heights %>%
   filter(inntekt < 1600000)
 
@@ -74,7 +76,7 @@ Histogrammet reflekterer *height_cmInt* fra oversikten i forrige kapittel.
 Vi kan også se at fordelingen er tilnærmet normalfordelt, med hovedvekten av observasjonene ligger mellom 160 til 180 centimeter.
 
 
-```{r}
+```{r hist_norm, echo=FALSE}
 hist(height_cm, breaks = 20,
      main = "Høyde i centimeter",
      xlab = "Centimeter",
@@ -86,7 +88,7 @@ yfit <- yfit*diff(heights$height_cm[1:2])*length(height_cm)
 lines(xfit, yfit, col = "yellow", lwd = 4)
 ```
 
-```{r density høyde, echo=FALSE}
+```{r density_høyde, echo=FALSE}
 ggplot(data = heights) +
   geom_density(aes(x = height_cm),
                    fill = "darkmagenta")
@@ -97,7 +99,7 @@ Igjen ser vi at fordelingen er tilnærmet normalfordelt.
 
 Vi ønsker også å se på fordelingen i inntekt. 
 
-```{r density inntekt, echo=FALSE}
+```{r density_inntekt, echo=FALSE}
 ggplot(data = heights) +
   geom_density(aes(x = inntekt),
                    fill = "darkmagenta")
@@ -117,7 +119,7 @@ Vi velger å kjøre to *plots* side ved side nedover.
 Plottet til venstre vil inneholde alle observasjonene fra datasettet, som da inkluderer *outliers*.
 På høyresiden har vi valgt å begrense inntekten til 1.600.000 NOK, da dette vil ekskludere de øverste 2% som kan være forstyrrende for å få et korrekt bilde av analysen.
 
-```{r height-income, echo=FALSE}
+```{r height_income, echo=FALSE}
 m1 <- ggplot(heights, 
              mapping = aes(x = height_cm, 
                            y = inntekt, 
@@ -166,7 +168,7 @@ I dette tilfellet får vi *outliers* i begge grafene, noe som har en sammenheng 
 Vi ser at vi kunne redusert *outliers* ytterliggere ved å begrense datasettet til å kun inkludere de med inntekt opp til 1.000.000, men vi føler ikke dette vil gi et like riktig bilde.
 
 
-```{r jitter, echo=False}
+```{r jitter, echo=F}
 m5 <- ggplot(heights, 
              mapping = aes(x = height_cm, 
                            y = inntekt)) +
@@ -194,7 +196,7 @@ Regresjonslinen til høyre ligger nærmere hovedvekten av observasjonene.
 I alle observasjonene over ser vi at høyde ikke er en tydelig forklaring på inntekten til observasjonene.
 Vi kan også vise dette ved å kjøre en enkel lineær regresjonsmodell, og gjør dette for begge datasettene vi har benyttet over.
 
-```{r enkel-regresjon, echo=T}
+```{r enkel_regresjon, echo=T}
 summary(lm(inntekt ~ height_cm, 
            data = heights))
 
@@ -212,7 +214,7 @@ I modellen under, der vi har begrenset inntektsnivået til 1.600.000, ser vi at 
 I delkapittelet om 2-variablers analyse så vi at høyde ikke hadde noe påvirkning på inntektsnivå, vi velger derfor å studere om andre faktorer kan være med å ha en påvirkningskraft.
 
 
-```{r educ-facet, echo=F}
+```{r educ_facet, echo=F}
 m7 <- ggplot(data = heights, 
              mapping = aes(x = height_cm, 
                            y = inntekt)) +
@@ -238,12 +240,25 @@ m8 <- ggplot(data = heights_liminc,
 ggarrange(m7, m8)
 ```
 
+Vi ser at når vi trekker inn utdanning som en ekstra variabel blir helningen/stigningstallet på regresjonslinjene høyere når man har utdanning mellom 12 til 20 år. 
+Utdanning vil derfor ha en påvirkningskraft på inntektsnivået, som gir mening siden man gjerne har høyere lønn når man har høyere utdanning. 
 
-Vi ser at når vi trekker inn utdanning som en ekstra variabel blir helningen/stigningstallet på regresjonslinjene høyere nå man har utdanning mellom 12 til 20 år. Utdanning vil derfor ha en påvirkningskraft på inntektsnivået, som gir mening siden man gjerne har høyere lønn når man har høyere utdanning. 
+Vi kan også vise dette ved hjelp av en enkel regresjonsanalyse.
 
+```{r reg_educ, echo=T}
+summary(lm(inntekt ~ education, 
+           data = heights))
 
+summary(lm(inntekt ~ education, 
+           data = heights_liminc))
+```
 
-```{r age-facet, echo=F}
+Her ser vi at utdanning har en forklaringsgrad på 15.46% og 15.98%, noe som kan sies å være rimelig forklarende sett for seg selv.
+Det gjenspeiler også den større endringen i plottet over, der vi nå ser en tydeligere diferanse i regresjonslinjene.
+
+Vi ønsker også å se på hvordan alder spiller inn på inntekten, da det vil være naturlig å anta at eldre gjerne tjener mer enn yngre.
+
+```{r age_facet, echo=F}
 m9 <- ggplot(data = heights, 
              mapping = aes(x = height_cm, 
                            y = inntekt)) +
@@ -270,47 +285,45 @@ ggarrange(m9, m10)
 
 ```
 
+Her ser vi at det er veldig lite forskjell ved å inkludere alder som en faktor. 
+Dette kan begrunnes med at datasettet har et relativt kort aldersspekter som kun går fra 47 til 56 år.
+Vi ser også at vi finner individer i alle aldre jevnt fordelt på forkjellig høyde og inntektsnivå.
 
+Dette kan vi også vise ved å kjøre en enkel regresjon som viser relasjonen mellom inntekt og alder i våre aktuelle datasett.
 
-```{r age-facet, echo=F}
-m11 <- ggplot(data = heights, 
-             mapping = aes(x = height_cm, 
-                           y = inntekt)) +
-    facet_wrap(~cut_number(weight, 
-                           n =5)) +
-  geom_point(aes(colour = cut_number(weight, 
-                                     n = 5)), 
-             show.legend = F) +
-  geom_smooth(method = "lm", 
-              se = FALSE)
+```{r reg_age, echo=F}
+summary(lm(inntekt ~ age, 
+           data = heights))
 
-m12 <- ggplot(data = heights_liminc, 
-             mapping = aes(x = height_cm, 
-                           y = inntekt)) +
-    facet_wrap(~cut_number(weight, 
-                           n =5)) +
-  geom_point(aes(colour = cut_number(weight, 
-                                     n = 5)), 
-             show.legend = F) +
-  geom_smooth(method = "lm", 
-              se = FALSE)
-
-ggarrange(m11, m12)
-
+summary(lm(inntekt ~ age, 
+           data = heights_liminc))
 ```
 
+Her ser vi akkurat det samme vi så i plottene over, at alder har en **veldig** lav forklaringsgrad på henholdsvis 0.038% og 0.02%. 
 
+### Konklusjon
 
+Til nå har vi sett at de variablene som vi har sett på ikke egentlig forklarer så mye av inntekten til observasjonene i datasettene *heights* og *heights_liminc*. 
+Helt til slutt ønsker vi derfor å kjøre en regresjon, der vi inkluderer alle variablene sett opp mot inntekt. 
+Dette gjør vi for å vurdere om hele datasettet kanskje er for mangelfullt eller har et for snevert spekter blant observasjonene.
 
-### Regresjon
-
-
-```{r}
+```{r komplett_reg, echo=T}
 summary(lm(inntekt ~ education + height_cm + sex + weight + afqt + marital, data = heights))
+
+summary(lm(inntekt ~ education + height_cm + sex + weight + afqt + marital, data = heights_liminc))
 ```
 
+Som mistenkt, ser vi at ved å kjøre en regresjon som inkluderer alle 6 variablene i datasettene, så får vi kun en forklaringsgrad på relativt lave 25.44% når vi inkluderer hele settet og 26.55% når vi begrenser inntekten til 1.600.000. 
+Dette betyr at det fremdeles er ukjente variabler som spiller en vesentlig større rolle på inntekten enn de variblene som er observert.
+Samtidig så kan selve datasettet være hentet inn på dårlig grunnlag, noe som bidrar til at det er vanskeligere å trekke noe tydelig konklusjon på hva som faktisk har noe betydning for inntektsnivået.
 
 
 ## Referanser
+
+## Appendiks
+
+```{r ref.label=knitr::all_labels(), echo = T, eval = F}
+
+```
 
 
