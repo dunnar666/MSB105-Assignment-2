@@ -64,6 +64,10 @@ ggplot(heightsPosInc, mapping = aes(x = height, y = income)) +
 ```{r}
 summary(lm(income ~ height, data = heights))
 ```
+```{r}
+summary(lm(income ~ education + height + sex + weight + afqt + marital, data = heights))
+```
+
 
 ```{r}
 library(dplyr)
