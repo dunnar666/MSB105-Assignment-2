@@ -40,7 +40,7 @@ Stemmer det egentlig at man tjener mer dess høyere man er?
 
 Vi bruker datasettet ***heights*** til *National Longitudinal Study* (U.S. Bureau of Labor Statistics) (finnes i `modelr`-pakken), for å utføre statistiske analyser for å se om vi kan finne noen momenter som kan påvirke inntektsnivå opp mot høyde, samt se om det er andre faktorer som har en påvirkningskraft. 
 
-I analysedelen vil vi benytte oss av forskjellige typer *plots* og gjerne knyttet datasettet opp mot enkle regresjonsmodeller for å prøve å svare på spørsmålet vårt.
+I analysedelen vil vi benytte oss av forskjellige typer *plots* og gjerne knytte datasettet opp mot enkle regresjonsmodeller for å prøve å svare på spørsmålet vårt.
 
 ## Analyse
 
@@ -164,6 +164,7 @@ m2 <- ggplot(heights_liminc,
 
 ggarrange(m1,m2)
 ```
+
 Til venstre ser vi ulempen med å inkludere de med høyest lønn, da det ikke er noen observasjoner overhodet mellom 1.600.000 og 3.000.000.
 Vi kan også se at de på toppen er fordelt gjennom hele høydespekteret.
 
@@ -286,7 +287,7 @@ summary(lm(inntekt ~ education,
 ```
 
 Her ser vi at utdanning har en forklaringsgrad på 15.46% og 15.98%, noe som kan sies å være rimelig forklarende sett for seg selv.
-Det gjenspeiler også den større endringen i plottet over, der vi nå ser en tydeligere diferanse i regresjonslinjene.
+Det gjenspeiler også den større endringen i plottet over, der vi nå ser en tydeligere differanse i regresjonslinjene.
 
 Vi ønsker også å se på hvordan alder spiller inn på inntekten, da det vil være naturlig å anta at eldre gjerne tjener mer enn yngre.
 
@@ -318,7 +319,7 @@ ggarrange(m9, m10)
 
 Her ser vi at det er veldig lite forskjell ved å inkludere alder som en faktor. 
 Dette kan begrunnes med at datasettet har et relativt kort aldersspekter som kun går fra 47 til 56 år.
-Vi ser også at vi finner individer i alle aldre jevnt fordelt på forkjellig høyde og inntektsnivå.
+Vi ser også at vi finner individer i alle aldre jevnt fordelt på forskjellig høyde og inntektsnivå.
 
 Dette kan vi også vise ved å kjøre en enkel regresjon som viser relasjonen mellom inntekt og alder i våre aktuelle datasett.
 
@@ -348,7 +349,7 @@ summary(lm(inntekt ~ education + height_cm + sex + weight + afqt + marital,
 ## Konklusjon
 
 Som mistenkt, ser vi ovenfor at ved å kjøre en regresjon som inkluderer alle 6 variablene i datasettene, så får vi kun en forklaringsgrad på relativt lave 25.44% når vi inkluderer hele settet og 26.55% når vi begrenser inntekten til 1.600.000. 
-Dette betyr at det fremdeles er ukjente variabler som spiller en vesentlig større rolle på inntekten enn de variblene som er observert.
+Dette betyr at det fremdeles er ukjente variabler som spiller en vesentlig større rolle på inntekten enn de variablene som er observert.
 Samtidig så kan selve datasettet være hentet inn på dårlig grunnlag, noe som bidrar til at det er vanskeligere å trekke noe tydelig konklusjon på hva som faktisk har noe betydning for inntektsnivået.
 
 Det vi kan konkludere med er at ***høyde har ingen innvirkning på inntekten***.
