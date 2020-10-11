@@ -354,8 +354,6 @@ Samtidig så kan selve datasettet være hentet inn på dårlig grunnlag, noe som
 
 Det vi kan konkludere med er at ***høyde har ingen innvirkning på inntekten***.
 
-## Referanser
-<div id="refs"></div>
 
 \newpage
 ## Appendiks
