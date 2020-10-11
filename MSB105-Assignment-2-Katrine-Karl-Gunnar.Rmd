@@ -221,7 +221,7 @@ Regresjonslinen til høyre ligger nærmere hovedvekten av observasjonene.
 I alle observasjonene over ser vi at høyde ikke er en tydelig forklaring på inntekten til observasjonene.
 Vi kan også vise dette ved å kjøre en enkel lineær regresjonsmodell, og gjør dette for begge datasettene vi har benyttet over.
 
-```{r enkel_regresjon, echo=T}
+```{r enkel_regresjon, echo=F}
 summary(lm(inntekt ~ height_cm, 
            data = heights))
 
@@ -270,7 +270,7 @@ Utdanning vil derfor ha en påvirkningskraft på inntektsnivået, som gir mening
 
 Vi kan også vise dette ved hjelp av en enkel regresjonsanalyse.
 
-```{r reg_educ, echo=T}
+```{r reg_educ, echo=F}
 summary(lm(inntekt ~ education, 
            data = heights))
 
@@ -329,7 +329,7 @@ Til nå har vi sett at de variablene som vi har sett på ikke egentlig forklarer
 Helt til slutt ønsker vi derfor å kjøre en regresjon, der vi inkluderer alle variablene sett opp mot inntekt. 
 Dette gjør vi for å vurdere om hele datasettet kanskje er for mangelfullt eller har et for snevert spekter blant observasjonene.
 
-```{r komplett_reg, echo=T}
+```{r komplett_reg, echo=F}
 summary(lm(inntekt ~ education + height_cm + sex + weight + afqt + marital,
            data = heights))
 
