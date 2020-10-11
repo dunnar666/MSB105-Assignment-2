@@ -15,9 +15,13 @@ library(dplyr)
 ```
 
 ## Introduksjon
+
 Vi har fått i oppgave å se på om det kan være en sammenheng mellom høyde og inntekt. 
 Stemmer det egentlig at man tjener mer dess høyere man er?
-Vi bruker datasettet heights (modelr) til _National Longitudinal Study_ (U.S. Bureau of Labor Statistics), for å utføre statistiske analyser for å se om vi kan finne noen momenter som kan påvirke inntektsnivå opp mot høyde, samt se om det er andre faktorer som har en påvirkningskraft. 
+
+Vi bruker datasettet ***heights*** til *National Longitudinal Study* (U.S. Bureau of Labor Statistics) (finnes i `modelr`-pakken), for å utføre statistiske analyser for å se om vi kan finne noen momenter som kan påvirke inntektsnivå opp mot høyde, samt se om det er andre faktorer som har en påvirkningskraft. 
+
+I analysedelen vil vi benytte oss av forskjellige typer *plots* og gjerne knyttet datasettet opp mot enkle regresjonsmodeller for å prøve å svare på spørsmålet vårt.
 
 ## Analyse
 
