@@ -100,16 +100,23 @@ hist(height_cm,
      xlab = "Centimeter",
      ylab = "Frekvens",
      col = "darkmagenta")
+
 xfit <- seq(min(height_cm), 
             max(height_cm))
+
 yfit <- dnorm(xfit,mean = mean(height_cm), 
               sd = sd(height_cm))
+
 yfit <- yfit*diff(heights$height_cm[1:2])*length(height_cm)
+
 lines(xfit, 
       yfit, 
-      col = "yellow", 
-      lwd = 4)
+      col = "cornflowerblue", 
+      lwd = 5)
 ```
+
+Over har vi et forsøk på å vise normalfordelingskurven sammen med histogrammet. 
+Kurven forsvinner ut av grafen, men gir likevel en god indikasjon på at høyden i centimeter er tilnærmet normalfordelt.
 
 ```{r density_høyde, echo=FALSE}
 ggplot(data = heights) +
