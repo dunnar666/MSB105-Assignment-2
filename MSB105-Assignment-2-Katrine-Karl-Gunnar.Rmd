@@ -43,7 +43,13 @@ kable(summary(heights[,8:11]))
 
 Her ser vi statistikk på blant annet vekt (i lbs), alder, sivilstatus, kjønn og utdanning inntekt i NOK og høyde (i cm).
 
+Under kjører vi samme oversikten, der vi ønsker se på hvordan den ser ut dersom vi begrenser inntekten til 1.600.000 NOK.
+Vi ønsker å gjøre dette får å utelukke de høye variablene som i følge *help-funksjonen* er beregnet gjennomsnittsinntekt av de 2 prosentene med høyest lønn.
+
 ```{r}
+heights_liminc <- heights %>%
+  filter(inntekt < 1600000)
+
 kable(summary(heights_liminc[,3:7]))
 kable(summary(heights_liminc[,8:11]))
 ```
@@ -51,7 +57,7 @@ kable(summary(heights_liminc[,8:11]))
 
 ### 1-variabels analyser
 
-Videre har vi laget noen forskjellige overikter for variablene *height_cm* og *inntekt* for å kunne vurdere om variablene er normalfordelte eller ikke. 
+Videre har vi laget noen forskjellige oversikter for variablene *height_cm* og *inntekt* for å kunne vurdere om variablene er normalfordelte eller ikke. 
 Vi starter med et histogram.
 
 ```{r histogram, echo=FALSE}
@@ -179,7 +185,7 @@ m6 <- ggplot(heights_liminc,
 
 ggarrange(m5, m6)
 ```
-
+I modellene over har vi valgt å bruke *geom_jitter* som viser resultatet litt mer spredt slik at vi får litt mer "*støy*", siden dataene smelte litt mer sammen. Når vi da velger å legge inn kommandoen *geom_smooth* ser vi at regresjonslinjen kommer mer til uttrykk. Vi ser at helningen til regresjonslinjen til venstre er høyere enn regresjonslinken til modellen til høyre, dette kommer av at når vi begrenser maks inntekt til kr 1 600 000 unngår vi gjennomsnittsinntekten av de 2 prosentene med høyest lønn som påvirker datasettet mye. 
 
 ### Regresjon
 
@@ -189,10 +195,6 @@ summary(lm(inntekt ~ height_cm, data = heights))
 
 ```{r}
 summary(lm(inntekt ~ education + height_cm + sex + weight + afqt + marital, data = heights))
-```
-
-```{r}
-hello()
 ```
 
 
