@@ -5,15 +5,15 @@ author:
 - Karl-Gunnar Severinsen
 subtitle: Assignment 2 i MSB105 Data Science - innleveringsfrist 12.10.20
 output:
-  html_notebook: default
   pdf_document: default
+  html_notebook: default
 fontsize: 12pt
 linestretch: 1.5
 classoption: twoside
 ---
 
 
-```{r setup, echo = FALSE}
+```{r setup, message=FALSE, echo = FALSE}
 library(modelr)
 library(ggplot2)
 library(knitr)
@@ -24,6 +24,7 @@ library(dplyr)
 options(scipen = 999)
 ```
 
+\newpage
 ## Introduksjon
 
 
@@ -38,7 +39,8 @@ Deretter sorterer vi utvalget i datasettet inn i 10 intervaller med sammendragss
 ```{r oversikt, echo=FALSE}
 heights$inntekt <- heights$income*9
 heights$height_cm <- heights$height*2.54
-heights$height_cmInt <- cut(heights$height_cm, breaks = 8)
+heights$height_cmInt <- cut(heights$height_cm, 
+                            breaks = 8)
 kable(summary(heights[,3:7]))
 kable(summary(heights[,8:11]))
 ```
@@ -64,7 +66,8 @@ Vi starter med et histogram.
 
 ```{r histogram, echo=FALSE}
 height_cm <- heights$height_cm
-hist(height_cm, breaks = 20,
+hist(height_cm, 
+     breaks = 20,
      main = "Høyde i centimeter",
      xlab = "Centimeter",
      ylab = "Frekvens",
@@ -77,15 +80,21 @@ Vi kan også se at fordelingen er tilnærmet normalfordelt, med hovedvekten av o
 
 
 ```{r hist_norm, echo=FALSE}
-hist(height_cm, breaks = 20,
+hist(height_cm, 
+     breaks = 20,
      main = "Høyde i centimeter",
      xlab = "Centimeter",
      ylab = "Frekvens",
      col = "darkmagenta")
-xfit <- seq(min(height_cm), max(height_cm))
-yfit <- dnorm(xfit,mean = mean(height_cm), sd = sd(height_cm))
+xfit <- seq(min(height_cm), 
+            max(height_cm))
+yfit <- dnorm(xfit,mean = mean(height_cm), 
+              sd = sd(height_cm))
 yfit <- yfit*diff(heights$height_cm[1:2])*length(height_cm)
-lines(xfit, yfit, col = "yellow", lwd = 4)
+lines(xfit, 
+      yfit, 
+      col = "yellow", 
+      lwd = 4)
 ```
 
 ```{r density_høyde, echo=FALSE}
@@ -125,6 +134,7 @@ m1 <- ggplot(heights,
                            y = inntekt, 
                            col = inntekt)) +
   geom_point()
+
 m2 <- ggplot(heights_liminc, 
              mapping = aes(x = height_cm, 
                            y = inntekt, 
@@ -149,6 +159,7 @@ m3 <- ggplot(heights,
         geom_boxplot(colour= "darkred",
                      fill = "cornflowerblue") +
   theme(panel.background = element_rect(fill = "pink"))
+
 m4 <- ggplot(heights_liminc, 
                mapping = aes(
                  x = height_cmInt, 
@@ -219,7 +230,7 @@ m7 <- ggplot(data = heights,
              mapping = aes(x = height_cm, 
                            y = inntekt)) +
     facet_wrap(~cut_number(education, 
-                           n =2)) +
+                           n = 2)) +
   geom_point(aes(colour = cut_number(education, 
                                      n = 2)), 
              show.legend = F) +
@@ -230,7 +241,7 @@ m8 <- ggplot(data = heights_liminc,
              mapping = aes(x = height_cm, 
                            y = inntekt)) +
     facet_wrap(~cut_number(education, 
-                           n =2)) +
+                           n = 2)) +
   geom_point(aes(colour = cut_number(education, 
                                      n = 2)), 
              show.legend = F) +
@@ -263,7 +274,7 @@ m9 <- ggplot(data = heights,
              mapping = aes(x = height_cm, 
                            y = inntekt)) +
     facet_wrap(~cut_number(age, 
-                           n =3)) +
+                           n = 3)) +
   geom_point(aes(colour = cut_number(age, 
                                      n = 3)), 
              show.legend = F) +
@@ -274,7 +285,7 @@ m10 <- ggplot(data = heights_liminc,
              mapping = aes(x = height_cm, 
                            y = inntekt)) +
     facet_wrap(~cut_number(age, 
-                           n =3)) +
+                           n = 3)) +
   geom_point(aes(colour = cut_number(age, 
                                      n = 3)), 
              show.legend = F) +
@@ -282,7 +293,6 @@ m10 <- ggplot(data = heights_liminc,
               se = FALSE)
 
 ggarrange(m9, m10)
-
 ```
 
 Her ser vi at det er veldig lite forskjell ved å inkludere alder som en faktor. 
@@ -308,9 +318,11 @@ Helt til slutt ønsker vi derfor å kjøre en regresjon, der vi inkluderer alle 
 Dette gjør vi for å vurdere om hele datasettet kanskje er for mangelfullt eller har et for snevert spekter blant observasjonene.
 
 ```{r komplett_reg, echo=T}
-summary(lm(inntekt ~ education + height_cm + sex + weight + afqt + marital, data = heights))
+summary(lm(inntekt ~ education + height_cm + sex + weight + afqt + marital,
+           data = heights))
 
-summary(lm(inntekt ~ education + height_cm + sex + weight + afqt + marital, data = heights_liminc))
+summary(lm(inntekt ~ education + height_cm + sex + weight + afqt + marital,
+           data = heights_liminc))
 ```
 
 Som mistenkt, ser vi at ved å kjøre en regresjon som inkluderer alle 6 variablene i datasettene, så får vi kun en forklaringsgrad på relativt lave 25.44% når vi inkluderer hele settet og 26.55% når vi begrenser inntekten til 1.600.000. 
