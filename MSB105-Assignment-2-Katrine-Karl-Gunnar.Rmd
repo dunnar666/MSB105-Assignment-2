@@ -118,9 +118,6 @@ Plottet til venstre vil inneholde alle observasjonene fra datasettet, som da ink
 På høyresiden har vi valgt å begrense inntekten til 1.600.000 NOK, da dette vil ekskludere de øverste 2% som kan være forstyrrende for å få et korrekt bilde av analysen.
 
 ```{r height-income, echo=FALSE}
-heights_liminc <- heights %>%
-  filter(inntekt < 1600000)
-
 m1 <- ggplot(heights, 
              mapping = aes(x = height_cm, 
                            y = inntekt, 
@@ -169,7 +166,6 @@ I dette tilfellet får vi *outliers* i begge grafene, noe som har en sammenheng 
 Vi ser at vi kunne redusert *outliers* ytterliggere ved å begrense datasettet til å kun inkludere de med inntekt opp til 1.000.000, men vi føler ikke dette vil gi et like riktig bilde.
 
 
-
 ```{r jitter, echo=False}
 m5 <- ggplot(heights, 
              mapping = aes(x = height_cm, 
@@ -185,7 +181,55 @@ m6 <- ggplot(heights_liminc,
 
 ggarrange(m5, m6)
 ```
-I modellene over har vi valgt å bruke *geom_jitter* som viser resultatet mer spredt slik at vi får litt mer "*støy*", siden dataene smelte mer sammen. Når vi da velger å legge inn kommandoen *geom_smooth* ser vi at regresjonslinjen kommer mer til uttrykk. Vi ser at helningen til regresjonslinjen til venstre er høyere enn regresjonslinjen til modellen til høyre, dette kommer av at når vi begrenser maks inntekt til kr 1.600.000 unngår vi gjennomsnittsinntekten av de 2 prosentene med høyest lønn som påvirker datasettet mye, siden det ikke er noen observasjoner mellom 1.600.000 og 3.000.000. 
+
+I modellene over har vi valgt å bruke *jitter*-funksjonen som viser resultatet mer spredt slik at vi får litt mer "*støy*".
+Dette gjør at dataene smelter mer sammen, slik at det blir tydeligere å se hvor hovedkonsentrasjonen av observasjonene ligger.
+
+Når vi da velger å legge inn kommandoen `geom_smooth` så får vi en regresjonslinje. 
+Vi ser at helningen/stigningstallet til regresjonslinjen til venstre er høyere enn regresjonslinjen i modellen til høyre. 
+Dette kommer av at når vi begrenser maks inntekt til kr 1.600.000 unngår vi gjennomsnittsinntekten av de 2 prosentene med høyest lønn som påvirker datasettet mye, siden det ikke er noen observasjoner mellom 1.600.000 og 3.000.000. 
+Regresjonslinen til høyre ligger nærmere hovedvekten av observasjonene.
+
+
+I alle observasjonene over ser vi at høyde ikke er en tydelig forklaring på inntekten til observasjonene.
+Vi kan også vise dette ved å kjøre en enkel lineær regresjonsmodell, og gjør dette for begge datasettene vi har benyttet over.
+
+```{r enkel-regresjon, echo=T}
+summary(lm(inntekt ~ height_cm, data = heights))
+
+summary(lm(inntekt ~ height_cm, data = heights_liminc))
+```
+
+Her ser vi tydelig at høyde ikke er en særlig relevant faktor for inntekten.
+I den første modellen ser vi av *R^2*
+
+### Analyse med flere variabler 
+
+
+
+```{r}
+m7 <- ggplot(data = heights, mapping = aes(x = height_cm, y = inntekt)) +
+    facet_wrap(~cut_number(education, n =2)) +
+  geom_point(aes(colour = cut_number(education, n = 2)), show.legend = F) +
+  geom_smooth(method = "lm", se = FALSE)
+
+m8 <- ggplot(data = heights_liminc, mapping = aes(x = height_cm, y = inntekt)) +
+    facet_wrap(~cut_number(education, n =2)) +
+  geom_point(aes(colour = cut_number(education, n = 2)), show.legend = F) +
+  geom_smooth(method = "lm", se = FALSE)
+
+ggarrange(m7, m8)
+```
+
+
+```{r}
+
+ggplot(data = heights_liminc, mapping = aes(x = height_cm, y = inntekt)) +
+    facet_wrap(~cut_number(education, n =2)) +
+  geom_point(aes(colour = cut_number(education, n = 2))) +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
 
 ### Regresjon
 
