@@ -29,7 +29,7 @@ options(scipen = 999)
 
 ### Oversikt
 
-Vi starter med å lage en kolonne der høyden er vist i centimeter og inntekten i nnorske kroner. 
+Vi starter med å lage en kolonne der høyden er vist i centimeter og inntekten i norske kroner. 
 Vi gjør dette for å kunne få en bedre og mer forståelig analyse, da vi vil få en bedre forståelse ved å benytte kjente verdier. 
 Deretter sorterer vi utvalget i datasettet inn i 10 intervaller med sammendragsstatistikk, for å gi en kjapp oversikt:
 
@@ -105,7 +105,7 @@ ggplot(data = heights) +
 
 Her ser vi tydelig at inntekten ikke er normalfordelt.
 Dette har sammenheng med at det er mange observasjoner rundt 0, samt de 2% med høyest lønn er vist ved et gjennomsnitt av deres lønn.
-Dette medfører null observasjoner mellom 1.700.000 og 3.000.000, og en stor tetthet rundt 3-400.000.
+Dette medfører null observasjoner mellom 1.600.000 og 3.000.000, og en stor tetthet rundt 3-400.000.
 Vi så også dette tidligere i oversikten, der vi får en median på 266.000 og et gjennomsnitt på 370.000.
 
 ### 2-variablers analyse
@@ -185,7 +185,7 @@ m6 <- ggplot(heights_liminc,
 
 ggarrange(m5, m6)
 ```
-I modellene over har vi valgt å bruke *geom_jitter* som viser resultatet litt mer spredt slik at vi får litt mer "*støy*", siden dataene smelte litt mer sammen. Når vi da velger å legge inn kommandoen *geom_smooth* ser vi at regresjonslinjen kommer mer til uttrykk. Vi ser at helningen til regresjonslinjen til venstre er høyere enn regresjonslinken til modellen til høyre, dette kommer av at når vi begrenser maks inntekt til kr 1 600 000 unngår vi gjennomsnittsinntekten av de 2 prosentene med høyest lønn som påvirker datasettet mye. 
+I modellene over har vi valgt å bruke *geom_jitter* som viser resultatet mer spredt slik at vi får litt mer "*støy*", siden dataene smelte mer sammen. Når vi da velger å legge inn kommandoen *geom_smooth* ser vi at regresjonslinjen kommer mer til uttrykk. Vi ser at helningen til regresjonslinjen til venstre er høyere enn regresjonslinjen til modellen til høyre, dette kommer av at når vi begrenser maks inntekt til kr 1.600.000 unngår vi gjennomsnittsinntekten av de 2 prosentene med høyest lønn som påvirker datasettet mye, siden det ikke er noen observasjoner mellom 1.600.000 og 3.000.000. 
 
 ### Regresjon
 
