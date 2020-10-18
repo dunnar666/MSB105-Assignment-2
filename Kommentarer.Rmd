@@ -1,8 +1,25 @@
 ---
-title: "Kommentarer"
+title: "Kommentarer til MSB,DS OPPGAVE 2"
 output: html_document
 ---
+# Kommentarer til Karl-Gunnar og Katrine sin oppgave
 
 Hei!
 
+God oppgave, fin og ryddig med farger og flere forskjellige metoder brukt i sammenheng med datasettet, vi har gått gjennom linjene og har trukket en konklusjon. Vi ser for eksempel at dere har inkludert appendiks i oppgaven, noe som ikke er helt nødvendig i en "Scientific Report". Vi har også sett store mellomrom mellom visse avsnitt og modellene, dette kunne kanskje vært mindre for å gjøre oppgaven mer oversiktlig. Ellers er oppgaven fin og god, med en god konklusjonsdel! 
 
+Gjennomgang av oppgaven, ting vi har sett ekstra nøye på:
+
+1: God Toc, introduksjon og oversikt
+
+2: Analyse delene godt gjennomført
+
+3: Konklusjon god. 
+
+4: Appendiks, vårt syn er at det er unødvendig for enkle korte analyser. 
+
+Vi har fjernet Appendiksen, i vår clone, dette 
+
+Ha en strålende dag videre!
+
+Hilsen Arian og Anne Grete.
