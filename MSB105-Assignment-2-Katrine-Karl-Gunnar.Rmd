@@ -192,15 +192,12 @@ m4 <- ggplot(heights_liminc,
 
 ggarrange(m3, m4)
 ```
-
 I *boxplottet* der selve boksen representerer første og tredje kvantil, i tillegg ser vi medianen i form av streken som går gjennom hver boks. 
 De tynne strekene over/under boksene, kalles *whiskers*, og inkluderer observasjoner inntil 1.5% utover boksene.
 
 Vi får her i stor grad det samme bilde som i plottet over. 
 I dette tilfellet får vi *outliers* i begge grafene, noe som har en sammenheng med at både median- og gjennomsnittslønn er relativt lav i forhold til alle observasjonene.
 Vi ser at vi kunne redusert *outliers* ytterliggere ved å begrense datasettet til å kun inkludere de med inntekt opp til 1.000.000, men vi føler ikke dette vil gi et like riktig bilde.
-
-
 ```{r jitter, echo=F}
 m5 <- ggplot(heights, 
              mapping = aes(x = height_cm, 
@@ -354,12 +351,5 @@ Samtidig så kan selve datasettet være hentet inn på dårlig grunnlag, noe som
 
 Det vi kan konkludere med er at ***høyde har ingen innvirkning på inntekten***.
 
-
-\newpage
-## Appendiks
-
-```{r ref.label=knitr::all_labels(), echo = T, eval = F}
-
-```
 
 
