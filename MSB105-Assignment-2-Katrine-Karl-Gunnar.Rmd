@@ -30,6 +30,9 @@ library(tidyverse)
 library(ggpubr)
 library(dplyr)
 options(scipen = 999)
+# Jeg vil foreslå 
+# options(scipen = 2)
+# som et kompromiss
 ```
 
 \newpage
@@ -55,8 +58,10 @@ heights$inntekt <- heights$income*9
 heights$height_cm <- heights$height*2.54
 heights$height_cmInt <- cut(heights$height_cm, 
                             breaks = 8)
-kable(summary(heights[,3:7]))
-kable(summary(heights[,8:11]))
+heights[,3:7] %>% 
+  summary()# %>% kable()
+heights[,8:11] %>% 
+  summary()# %>% kable()
 ```
 
 Her ser vi statistikk på blant annet vekt (i lbs), alder, sivilstatus, kjønn og utdanning inntekt i NOK og høyde (i cm).
@@ -65,11 +70,18 @@ Under kjører vi samme oversikten, der vi ønsker se på hvordan den ser ut ders
 Vi ønsker å gjøre dette får å utelukke de høye variablene som i følge *help-funksjonen* er beregnet gjennomsnittsinntekt av de 2 prosentene med høyest lønn.
 
 ```{r summary_liminc, echo=F}
-heights_liminc <- heights %>%
-  filter(inntekt < 1600000)
+#skrevet som pipes
+heights %>%
+  filter(inntekt < 1600000) %>% 
+  select(3:7) %>% 
+  summary() %>% 
+  kable()
 
-kable(summary(heights_liminc[,3:7]))
-kable(summary(heights_liminc[,8:11]))
+heights %>%
+  filter(inntekt < 1600000) %>% 
+  select(8:11) %>% 
+  summary() # %>% kable()
+
 ```
 
 
@@ -78,14 +90,136 @@ kable(summary(heights_liminc[,8:11]))
 Videre har vi laget noen forskjellige oversikter for variablene *height_cm* og *inntekt* for å kunne vurdere om variablene er normalfordelte eller ikke. 
 Vi starter med et histogram.
 
-```{r histogram, echo=FALSE}
-height_cm <- heights$height_cm
-hist(height_cm, 
-     breaks = 20,
-     main = "Høyde i centimeter",
-     xlab = "Centimeter",
-     ylab = "Frekvens",
-     col = "darkmagenta")
+```{r data-prep, echo=FALSE}
+# Vil foreslå å heller først lage en egen kopi av heights
+# så benytte mutate() til å lage en ny variable. 
+my_heights <- heights
+my_heights <- my_heights %>% 
+  mutate(
+    heights_cm = heights$height*2.54,
+    heights_cm_int = cut_width(heights_cm, width = 2*2.54)
+  )
+# mean og sd male heights
+ h_male <-  my_heights %>% 
+  filter(sex == "male") %>%
+  summarise(
+    mu = mean(height_cm),
+    sd = sd(height_cm)
+    )
+# mean og sd female heights
+  h_female <-  my_heights %>% 
+  filter(sex == "female") %>%
+  summarise(
+    mu = mean(height_cm),
+    sd = sd(height_cm)
+    )
+```
+
+```{r two-histograms, echo = FALSE}
+# Dette er ikke så lett. Hovedårsaken er at stat_function() er designet
+# til å tegne **samme** funksjon over plotene. Vi trenger å tegne en funksjon for kvinner og en for menn. Vi kan løse problemt på to måter. Lage to figurer, en for kvinner og en for menn, os så sette dem ved siden av hverandre eller vi kan ha et plot der vi først plotter en halvdel av datasettet (kvinner) og så andre halvdel (menn). Vi kan skille de to ved farge og/eller opasitet (alpha)
+# female plot
+ fe_plot <- my_heights %>% 
+   filter(sex == "female")  %>% 
+  ggplot() +
+  geom_histogram(mapping = aes(x = heights_cm, 
+                               y = ..density..),
+                 binwidth = 2.72
+                 ) +
+   stat_function(fun = dnorm, 
+                args = list(mean = h_female$mu,
+                            sd = h_female$sd)
+                ) +
+   ggtitle("Height of females")
+# male plot 
+ m_plot <- my_heights %>% 
+   filter(sex == "male")  %>% 
+  ggplot() +
+  geom_histogram(mapping = aes(x = heights_cm,
+                               y = ..density..
+                               ),
+                 binwidth = 2.72) +
+   stat_function(fun = dnorm, 
+                args = list(mean = h_male$mu,
+                            sd = h_male$sd)
+                ) +
+   ggtitle("Height of males")
+# put the two histograms together
+ggarrange(fe_plot, m_plot, ncol = 2, nrow = 1)
+```
+
+```{r histogram-red-blue, echo=FALSE}
+# Both curves and histogram in same figure
+# garish colours
+my_heights %>% 
+  ggplot() +
+  ### male ###
+  geom_histogram(data = filter(my_heights, sex == "male"),
+                 mapping = aes(x = heights_cm, y = ..density..), 
+                 binwidth = 2.72, 
+                 alpha = 0.1,
+                 colour = 'blue',
+                 fill = 'blue') +
+  # mark the mean
+  geom_vline(xintercept = h_male$mu, 
+             colour = 'blue', 
+             lwd = 1.5) +
+  # draw normal distribution for male mean height and sd
+   stat_function(fun = dnorm, 
+                args = list(mean = h_male$mu, sd = h_male$sd), 
+                colour = 'blue') +
+  ### female ###
+  geom_histogram(data = filter(my_heights, sex == "female"), 
+                 mapping = aes(x = heights_cm, y = ..density..), 
+                 binwidth = 2.72,
+                 alpha = 0.1,
+                 colour = 'red',
+                 fill = 'red') +
+  stat_function(fun = dnorm, 
+                args = list(mean = h_female$mu, sd = h_female$sd), 
+                colour = 'red') +
+  geom_vline(xintercept = h_female$mu, 
+             colour = 'red',
+             lwd = 1.5) +  
+  ggtitle("Distribution of height. Males blue, females red")
+```
+
+```{r histogram-darkseagreen4, echo=FALSE}
+# nicer colour scheme. One colour different alpha
+my_heights %>% 
+  ggplot() +
+  ### male ###
+  geom_histogram(data = filter(my_heights, sex == "male"),
+                 mapping = aes(x = heights_cm, y = ..density..), 
+                 binwidth = 2.72, 
+                 alpha = 0.3,
+                 colour = 'darkseagreen4',
+                 fill = 'darkseagreen4'
+                 ) +
+  geom_vline(xintercept = h_male$mu,
+             colour = 'darkseagreen4',
+             lwd = 1.15
+             ) +
+   stat_function(fun = dnorm, 
+                args = list(mean = h_male$mu, sd = h_male$sd), 
+                colour = 'darkseagreen4'
+                ) +
+  geom_histogram(data = filter(my_heights, sex == "female"),
+                 mapping = aes(x = heights_cm, y = ..density..), 
+                 binwidth = 2.72,
+                 alpha = 0.7,
+                 colour = 'black',
+                 fill = 'darkseagreen4'
+                 ) +
+   stat_function(fun = dnorm, 
+                args = list(mean = h_female$mu, sd = h_female$sd),
+                colour = 'black'
+                ) +
+  geom_vline(xintercept = h_female$mu, 
+             colour = 'darkseagreen4',
+             lwd = 1.15
+             ) +  
+  ggtitle("Distribution of height. Males lighter green")
 ```
 
 I histogrammet over ser vi høyde i centimeter opp mot frekvens. 
@@ -94,25 +228,35 @@ Vi kan også se at fordelingen er tilnærmet normalfordelt, med hovedvekten av o
 
 
 ```{r hist_norm, echo=FALSE}
-hist(height_cm, 
-     breaks = 20,
-     main = "Høyde i centimeter",
-     xlab = "Centimeter",
-     ylab = "Frekvens",
-     col = "darkmagenta")
+# NOTE! The option "Show output inline for all R MArkdown documents" 
+# under Preferences > Markdown > Basic MUST be turned off for the 
+# following to work. Then output wiil be sent to console and the
+# Plots tab in the lower right corner.
+# Code will work in normal scripts and when whole document is knit whitout
+# this change in preferences. This is a problem concerning rmarkdown and 
+# R Notebooks
+# height_cm <- heights$height * 2.54
+# hist(height_cm, 
+#      breaks = 20,
+#      freq = FALSE,
+#      main = "Høyde i centimeter",
+#      xlab = "Centimeter",
+#      ylab = "Frekvens",
+#      col = "darkmagenta")
+# lines(density(height_cm), lwd = 3)
+####
+####
+# Easy to do the same in ggplot and we don't have to change our prefs
+mean_height_cm <- mean(heights$height)
+sd_height_cm <- sd(heights$height)
 
-xfit <- seq(min(height_cm), 
-            max(height_cm))
-
-yfit <- dnorm(xfit,mean = mean(height_cm), 
-              sd = sd(height_cm))
-
-yfit <- yfit*diff(heights$height_cm[1:2])*length(height_cm)
-
-lines(xfit, 
-      yfit, 
-      col = "cornflowerblue", 
-      lwd = 5)
+heights %>%
+  mutate(
+    height_cm = height * 2.54
+  ) %>% 
+  ggplot(mapping = aes(x = height_cm, y = ..density..)) +
+  geom_histogram(bins = 30, fill = "darkmagenta") + 
+  geom_density(lwd = 1.5)
 ```
 
 Over har vi et forsøk på å vise normalfordelingskurven sammen med histogrammet. 
@@ -150,6 +294,16 @@ Plottet til venstre vil inneholde alle observasjonene fra datasettet, som da ink
 På høyresiden har vi valgt å begrense inntekten til 1.600.000 NOK, da dette vil ekskludere de øverste 2% som kan være forstyrrende for å få et korrekt bilde av analysen.
 
 ```{r height_income, echo=FALSE}
+# Bruk fullt navn på parametrene, colour = ikke col =
+# Gir fargekoding av inntekt egentlig noen ekstra info?
+# Inntekt blir jo målt på vertikal akse og kan leses ut fra
+# punktets plassering. Jeg ville heller lagt vekk på å få 
+# frem hvor vi har mange observasjoner og hvor vi har få. 
+# Se forslag til figur nedenfor. Ideen er at ved lav opasitet 
+# vil punktet blir mørkere når vi har mange oppå hverandre, 
+# dvs mørke punkter der vi har mange observasjoner.
+heights_liminc <- heights %>%
+  filter(inntekt < 1600000)
 m1 <- ggplot(heights, 
              mapping = aes(x = height_cm, 
                            y = inntekt, 
@@ -165,6 +319,27 @@ m2 <- ggplot(heights_liminc,
 ggarrange(m1,m2)
 ```
 
+```{r height_income-ag, echo=FALSE}
+m1 <- heights %>%
+  filter(inntekt > 0) %>% 
+  ggplot(mapping = aes(x = height_cm,
+                       y = inntekt
+                       )
+         ) +
+  geom_point(size = 0.7, alpha = 0.1)
+
+m2 <- heights %>%
+  filter(inntekt > 0) %>%
+  filter(inntekt < 1600000) %>% 
+  ggplot(mapping = aes(x = height_cm,
+                       y = inntekt
+                       )
+         ) +
+  geom_point(size = 0.7, alpha = 0.1)
+
+ggarrange(m1,m2)
+```
+
 Til venstre ser vi ulempen med å inkludere de med høyest lønn, da det ikke er noen observasjoner overhodet mellom 1.600.000 og 3.000.000.
 Vi kan også se at de på toppen er fordelt gjennom hele høydespekteret.
 
@@ -174,6 +349,10 @@ Dette kan være en indikasjon på at høyde ikke har noe relevans for hvor mye e
 Vi kan også vise dette ved hjelp av et *boxplot*, der vi grupperer observasjonene i høydeintervaller på 10cm per boks.
 
 ```{r boxplot, echo=FALSE}
+# Fin figur. Igjen vil jeg anbefale å jobbe med heights, eventuelt en
+#  egen kopi, og så bruke filter, mutate, select etc på dette datasettet. 
+#  Mye mindre å holde styr på og gir ofte muligheter for copy-paste der 
+#  bare små endringer må gjøres. Se forslag nedenfor
 m3 <- ggplot(heights,
                 mapping = aes(
                   x = height_cmInt,
@@ -188,6 +367,30 @@ m4 <- ggplot(heights_liminc,
                  y = inntekt)) +
         geom_boxplot(colour = "darkred",
                      fill = "darkolivegreen") +
+  theme(panel.background = element_rect(fill = "pink"))
+
+ggarrange(m3, m4)
+```
+
+```{r boxplot-ag, echo=FALSE}
+m3 <- heights %>% 
+  ggplot(mapping = aes(
+                  x = cut_interval(height_cm, n = 8),
+                  y = inntekt)
+         ) +
+        geom_boxplot(colour = "darkred",
+                     fill = "cornflowerblue") +
+  theme(panel.background = element_rect(fill = "pink"))
+
+m4 <- heights %>% 
+  filter(inntekt > 0) %>% 
+  filter(inntekt < 1600000) %>% 
+  ggplot(mapping = aes(
+                  x = cut_interval(height_cm, n = 8),
+                  y = inntekt)
+         ) +
+        geom_boxplot(colour = "darkred",
+                     fill = "darkgreen") +
   theme(panel.background = element_rect(fill = "pink"))
 
 ggarrange(m3, m4)
@@ -250,9 +453,9 @@ I delkapittelet om 2-variablers analyse så vi at høyde ikke hadde noe påvirkn
 ```{r educ_facet, echo=F}
 m7 <- ggplot(data = heights, 
              mapping = aes(x = height_cm, 
-                           y = inntekt)) +
-    facet_wrap(~cut_number(education, 
-                           n = 2)) +
+                           y = inntekt)
+             ) +
+    facet_wrap(~cut_number(education, n = 2)) +
   geom_point(aes(colour = cut_number(education, 
                                      n = 2)), 
              show.legend = F) +
@@ -316,6 +519,40 @@ m10 <- ggplot(data = heights_liminc,
 
 ggarrange(m9, m10)
 ```
+
+```{r age_facet-ag, echo=F}
+#Mitt forslag
+heights %>%
+  group_by(sex) %>% 
+  mutate(
+    height_cmInt = cut_interval(height_cm, breaks = c(132, 160, 188, 216), labels = c("lav", "middels", "høy"), right = FALSE)
+  ) %>% 
+  ungroup() %>% 
+  ggplot(mapping = aes(x = height_cm, 
+                           y = inntekt
+                       )
+         ) +
+    facet_wrap(sex ~ height_cmInt) +
+  geom_point(mapping = aes(colour = cut_number(age, 
+                                     n = 3)), 
+             show.legend = F) +
+  geom_smooth(method = "lm", 
+              se = FALSE)
+
+m10 <- ggplot(data = heights_liminc, 
+             mapping = aes(x = height_cm, 
+                           y = inntekt)) +
+    facet_wrap(~cut_number(age, 
+                           n = 3)) +
+  geom_point(aes(colour = cut_number(age, 
+                                     n = 3)), 
+             show.legend = F) +
+  geom_smooth(method = "lm", 
+              se = FALSE)
+
+ggarrange(m9, m10)
+```
+
 
 Her ser vi at det er veldig lite forskjell ved å inkludere alder som en faktor. 
 Dette kan begrunnes med at datasettet har et relativt kort aldersspekter som kun går fra 47 til 56 år.

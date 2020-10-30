@@ -1,0 +1,26 @@
+---
+title: "ag Comments"
+output: html_notebook
+---
+
+Fint lite paper. Dere har prøvd dere på mange ulike figurer. Mitt klare råd er at det er lurt å satse på å lære seg `ggplot()` og pipes. Ggplot kan generere, nesten, alle typer plot, gir en felles utforming og ting en lærer kan ofte overflyttes fra en type plot til en annen.
+
+Dere prøver dere på kombinasjons-plot med histogram og normalfordeling for menn og kvinner. Dette er ikke så lett å få til, fordi vi må ha en normalfordelingskurve for menn og en annen for kvinner. Jeg har forsøkt å vise hvordan dere kan få det til vha. ggplot. En kan også få til tilsvarende med de klassiske funksjonene, men støter på problemer i R Notebooks hvis man benytter inline output fra kommandoer.
+
+1.  Kombinasjon av histogram og density er litt vanskelig siden vi må skille på kjønn. Jeg har lagt inn tre ulike alternativer. Dere får velge den dere liker best.
+
+2.  Dere skriver: «Over har vi et forsøk på å vise normalfordelingskurven sammen med histogrammet.
+
+    Kurven forsvinner ut av grafen, men gir likevel en god indikasjon på at høyden i centimeter er tilnærmet normalfordelt.»
+
+    i.  Egentlig har vi nok en kombinasjon av to normalfordelinger, en for kvinner og en for menn
+
+    ii. I figuren kan en skimte en liten «dal» der de to møtes.
+
+3.  Dere skriver: «Her ser vi tydelig at inntekten ikke er normalfordelt.»
+
+    i.  Det er riktig. Inntekt blir ofte antatt å være lognormalt fordelt, dvs. at `ln(inntekt)` er normalfordelt.
+
+    ii. Dette er årsaken til at man ofte utfører en log-transformasjon av inntektsvariabelen.
+
+4.  
