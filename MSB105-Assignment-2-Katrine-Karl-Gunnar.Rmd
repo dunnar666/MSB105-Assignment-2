@@ -8,16 +8,16 @@ classoption: twoside
 fontsize: 12pt
 linestretch: 1.5
 output:
-  pdf_document:
-    df_print: paged
-    toc: true
-    toc_depth: 3
-    fig_height: 4
   html_document:
     df_print: paged
     toc: true
     toc_depth: 3
     toc_float: true
+  pdf_document:
+    df_print: paged
+    toc: true
+    toc_depth: 3
+    fig_height: 4
 ---
 
 
@@ -519,40 +519,6 @@ m10 <- ggplot(data = heights_liminc,
 
 ggarrange(m9, m10)
 ```
-
-```{r age_facet-ag, echo=F}
-#Mitt forslag
-heights %>%
-  group_by(sex) %>% 
-  mutate(
-    height_cmInt = cut_interval(height_cm, breaks = c(132, 160, 188, 216), labels = c("lav", "middels", "høy"), right = FALSE)
-  ) %>% 
-  ungroup() %>% 
-  ggplot(mapping = aes(x = height_cm, 
-                           y = inntekt
-                       )
-         ) +
-    facet_wrap(sex ~ height_cmInt) +
-  geom_point(mapping = aes(colour = cut_number(age, 
-                                     n = 3)), 
-             show.legend = F) +
-  geom_smooth(method = "lm", 
-              se = FALSE)
-
-m10 <- ggplot(data = heights_liminc, 
-             mapping = aes(x = height_cm, 
-                           y = inntekt)) +
-    facet_wrap(~cut_number(age, 
-                           n = 3)) +
-  geom_point(aes(colour = cut_number(age, 
-                                     n = 3)), 
-             show.legend = F) +
-  geom_smooth(method = "lm", 
-              se = FALSE)
-
-ggarrange(m9, m10)
-```
-
 
 Her ser vi at det er veldig lite forskjell ved å inkludere alder som en faktor. 
 Dette kan begrunnes med at datasettet har et relativt kort aldersspekter som kun går fra 47 til 56 år.

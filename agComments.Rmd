@@ -23,4 +23,3 @@ Dere prøver dere på kombinasjons-plot med histogram og normalfordeling for men
 
     ii. Dette er årsaken til at man ofte utfører en log-transformasjon av inntektsvariabelen.
 
-4.  
